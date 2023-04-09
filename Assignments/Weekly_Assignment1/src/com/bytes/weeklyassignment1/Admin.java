@@ -1,12 +1,21 @@
 package com.bytes.weeklyassignment1;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 
 public class Admin extends Employee {
 	String Area;
 
-	public Admin(String firstName, String lastName, LocalDate date, String area) {
-		super(firstName, lastName, date);
+	public Admin(int empId,String firstName, String lastName, String date, String area) {
+		super(empId,firstName, lastName, date);
+		Area = area;
+		
+	}
+
+	public String getArea() {
+		return Area;
+	}
+
+	public void setArea(String area) {
 		Area = area;
 	}
 	

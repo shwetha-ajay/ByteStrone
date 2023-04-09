@@ -1,17 +1,29 @@
 package com.bytes.weeklyassignment1;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 
 public class Employee {
+	int empId;
 	String firstName;
 	String lastName;
-	LocalDate date;
+	String date;
 
-	public Employee(String firstName, String lastName, LocalDate date) {
+	public Employee(int empId,String firstName, String lastName, String date) {
 		super();
+		this.empId=empId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.date = date;
+	}
+
+	
+	public int getEmpId() {
+		return empId;
+	}
+
+	
+	public void setEmpId(int empId) {
+		this.empId = empId;
 	}
 
 	public String getFirstName() {
@@ -30,11 +42,11 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
