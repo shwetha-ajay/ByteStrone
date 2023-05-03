@@ -1,9 +1,12 @@
 package com.bytes.weeklyassignment1;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,12 +20,7 @@ public class MainClass {
 //	private static final String  = null;
 
 	public static void main(String[] args) {
-//		Scanner Obj=new Scanner(System.in);
-//		Employee emp1=new Employee("Joe","Joseph","22/03/1998");
-//		Employee emp2=new Employee("Loky","Roy","14/09/1997");
-		
-		
-	
+
 		ArrayList<Employee> empList =new ArrayList<Employee>();
 		ArrayList<Engineer> empEngineerList=new ArrayList<Engineer>();
 		ArrayList<Admin> empAdminList=new ArrayList<Admin>();
@@ -46,35 +44,62 @@ public class MainClass {
 	                    String fname = Obj.next();
 	                    System.out.println("Enter last name:");
 	                    String lname = Obj.next();
-	                    System.out.println("Enter age:");
-	                    String date = Obj.next();
-	                    empList.add(new Employee(empId, fname, lname,date));
-	                    System.out.println("enter the dept: "+"1.Admin\n"+"2.Engineer\n"+"3.HRmanager");
+	                    System.out.println("Enter date of birth:");
+	               //   LocalDate date = Obj.nextLine();    
+	                    int year = Obj.nextInt();
+	            		int month = Obj.nextInt();
+	            		int day = Obj.nextInt();
+	    				LocalDate dateOfBirth = LocalDate.of(year,month,day);
+	    			//	objEmp.setDOB(dateOfBirth);
+	                    
+	                    
+	                    empList.add(new Employee(empId, fname, lname,dateOfBirth));
+	                    
+	       //writing to a file            
+	                    
+	                    try {
+	                        File myWriter = new File("C:\\Users\\ShwethaA(Intern)\\Desktop\\EmployeeManagement\\EmployeeDetails.txt");
+	                        PrintWriter w=new PrintWriter(new FileOutputStream(myWriter,true));
+	                        w.append("\n"+empId+"   "+fname+" "+lname+"  "+dateOfBirth);  
+	                        w.close();
+	                       System.out.println("Successfully written into the file.");
+	                      } catch (IOException e) {
+	                       System.out.println("An error occurred..");
+	                       e.printStackTrace();
+	                        }
+	                    
+	                    
+	                    System.out.println("enter the dept: "+"1.Engineer\n"+"2.Admin\n"+"3.HRmanager");
 	                    int dept = Obj.nextInt();
 	    	            switch (dept) {
 	    	            case 1:
-	    					Engineer eng= new Engineer(empId, fname, fname, fname, fname);
-	    					eng.setEmpId(empId);
+	    					
 	    					System.out.println("Enter the techstack of engineer");
 	    					String techstack=Obj.next();
+	    					Engineer eng= new Engineer(empId,fname, lname, dateOfBirth,techstack);
+	    					eng.setEmpId(empId);
 	    					eng.setTechStack(techstack);
+	    					
 	    					empEngineerList.add(eng);
 	    					break;
 	    					
 	    				case 2:
-	    					Admin adm=new Admin(empId, fname, fname, fname, fname);
-	    					adm.setEmpId(empId);
+	    					
 	    					System.out.println("Enter the role of admin");
 	    					String roles=Obj.next();
+	    					
+	    					Admin adm=new Admin(empId, fname, lname, dateOfBirth, roles);
+	    					adm.setEmpId(empId);
 	    					adm.setArea(roles);
 	    					empAdminList.add(adm);
 	    					break;
 	    					
 	    				case 3:
-	    					HRmanager hr= new HRmanager(empId, fname, fname, fname, fname);
-	    					hr.setEmpId(empId);
+	    					
 	    					System.out.println("Enter the specialization");
 	    					String spl=Obj.next();
+	    					HRmanager hr= new HRmanager(empId, fname, lname, dateOfBirth, spl);
+	    					hr.setEmpId(empId);
 	    					hr.setSpecialiation(spl);
 	    					empHRList.add(hr);
 	    					break;
@@ -86,21 +111,11 @@ public class MainClass {
 	    	            System.out.println("Entered successfully");
 	                    break;
 	                    
-	     //writing to a file
-//	                    
-	                    try {
-	                        File myWriter = new File("C:\\Users\\ShwethaA(Intern)\\Desktop\\EmployeeManagement\\EmployeeDetails.txt");
-	                        PrintWriter w=new PrintWriter(new FileOutputStream(myWriter,true));
-	                        w.append(empId+fname+lname+date);
-	              /          w.close();
-	                       System.out.println("Successfully wrote to the file.");
-	                      } catch (IOException e) {
-	                       System.out.println("An error occurred..");
-	                       e.printStackTrace();
-	                        }
+	   
 	                    
+	     //update an employee            
 	                     
-	        //update an employee
+	      
 	                case 2:
 	                	   System.out.println("Enter empId to update:");
 	                        int updateempId = Obj.nextInt();
@@ -128,12 +143,45 @@ public class MainClass {
 	                        break;
 	          //printing
 	                case 3:
-	                	System.out.println("Enter the Employee ID of the Employee whose details has to be printed");
-	    				int printId = Obj.nextInt();
-	    				for (Employee emp : empList) {
-	    					if (emp.getEmpId() == printId) {
-	    						System.out.println(emp);}}
+	                	System.out.println("======Details of employee======");
+	                	
+	                	try {
+
+	                		File EmpFileRead = new File("C:\\\\Users\\\\ShwethaA(Intern)\\\\Desktop\\\\EmployeeManagement\\\\EmployeeDetails.txt");
+
+	                		Scanner Obj1 = new Scanner(EmpFileRead);
+
+	                		while (Obj1.hasNextLine()) {
+
+	                		String EmpData = Obj1.nextLine();
+
+	                		System.out.println(EmpData);
+
+	                		}
+
+	                		Obj1.close();
+
+	                		
+	                		} catch (FileNotFoundException e) {
+
+	                		System.out.println("File not found ");
+
+	                		e.printStackTrace();
+
+	                		}
+	                	
+	                	
+	                	
+	                	
+//	    				int printId = Obj.nextInt();
+//	    				for (Employee emp : empList) {
+//	    					if (emp.getEmpId() == printId) {
+//	    						System.out.println(emp);}}
 	    				break;
+	    				
+	    				
+	    				
+	    				
 	    	  //sorting
 	                case 4:
 	                	System.out.println("Sorting employees by last name: ");
@@ -144,10 +192,9 @@ public class MainClass {
 	    				
 	    						return e1.getLastName().compareTo(e2.getLastName());
 	    					}
-	    				});
-	                	
-	                
-	    			
+	    				
+	                	});
+	          	
 	    				for(Employee emp:Empcopy) {
 	    					
 	    					System.out.println("Employee ID: " + emp.getEmpId());
@@ -216,5 +263,10 @@ public class MainClass {
 	            }
 	            }
 		
+}
+
+private static String LocalDate(String date) {
+	// TODO Auto-generated method stub
+	return null;
 }
 }

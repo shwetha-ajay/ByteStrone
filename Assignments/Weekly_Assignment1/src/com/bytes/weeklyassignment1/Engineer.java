@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Engineer extends Employee {
 	String techStack;
 
-	public Engineer(int empId,String firstName, String lastName, String date, String techStack) {
-		super(empId,firstName, lastName, date);
+	public Engineer(int empId,String firstName, String lastName, LocalDate dateOfBirth, String techStack) {
+		super(empId,firstName, lastName, dateOfBirth);
 		this.techStack = techStack;
 	}
 
