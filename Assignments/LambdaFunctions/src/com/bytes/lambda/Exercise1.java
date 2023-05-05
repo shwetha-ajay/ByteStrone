@@ -36,7 +36,7 @@ public class Exercise1 {
     System.out.println(result5);
     
     Function<String,Integer> length=(str)-> (str.length());
-    Object result6=length.apply("saaaag");
+    Integer result6=length.apply("saaaag");
     System.out.println(result6);
     
     List<Integer> array=Arrays.asList(1,2,5,8);
@@ -51,14 +51,8 @@ public class Exercise1 {
     List<Integer> mapToSquares=Arrays.asList(2,3,4);
     List<Integer>result9=mapToSquares.stream().map(num->num*num).collect(Collectors.toList());
     System.out.println(result9);
-    
-    
-    
-    
-    
-
+     
 	}	
 
-	
 }    
  

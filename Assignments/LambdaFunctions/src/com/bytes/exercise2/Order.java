@@ -66,5 +66,9 @@ public class Order {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	public String toString() {
+		return "Employee [Id: " + getId() + ", orderdate: " + getOrderDate() + ", delivery date: "
+				+ getDeliveryDate() + "]";
+	}
 	
 }
