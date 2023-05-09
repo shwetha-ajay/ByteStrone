@@ -70,16 +70,7 @@ public class PolicyMain {
 		claims.add(claim5);
 		
 		
-//		List<Object> activePolicies = policies.stream().filter(p -> p.getStatus().equals("active"))
-//                .collect(Collectors.toList());
-//        
-//		double avgRuntime = claims.stream().mapToInt(amount -> amount.getAmount()).average().orElse(0.0);
-//		System.out.println(avgRuntime);
-//		
-//		List<Policy>active=policies.stream().filter(policy->policy.getClaims().stream().anyMatch(p->p.getStatus().equals("active"))).collect(Collectors.toList());
-//		System.out.println(active);		
-		
-		//List<Policy>avgamount=policies.stream().mapToInt(amount->amount.getClaims().stream().anyMatch(p->p.getStatus.equals("active"))).collect(Collectors.toList());
+
 		
 //		Map<String, Integer> policyClaimCounts = policies.stream()
 //                .collect(Collectors.toMap(
@@ -88,8 +79,6 @@ public class PolicyMain {
 //                   ));
 
 		
-	//	Optional<Policy> highestAmount = claims.stream().filter(p -> p.getAmount().max(Comparator.comparing(Claims::getAmount)));
-
 		
 		// find the average amount of all active policies
 		
@@ -98,6 +87,32 @@ public class PolicyMain {
 				flatMap(b->b.claims.stream()).mapToDouble(amount->amount.getAmount()).average().orElse(0.0);
 
 				System.out.println("average amount is:" +avgAmt);
+				
+				
+				
+			
+				//	find the Policy entity with the highest premium amount
+		Optional<Policy> maxPolicy = policies.stream()
+				        .max(Comparator.comparingDouble(Claims::getAmount));
+				
+				
+	  // find the total number of claims made against each policy
+				
+				
+				Long noOfClaims = policies.stream()
+					.filter(claim -> claim.getClaims()
+					.count().collect(Collectors.toList());
+				System.out.println("Number of claims against each policy: " + noOfClaims);
+				
+				
+	  //find the Policy entity with the highest number of claims made against it
+				
+		Optional<Policy> policyWithMostClaims = policies.stream()
+				        .max(Comparator.comparingInt(policy -> policy.getClaims().size()));
+				
+				
+
+			}
 	}
 
-}
+
