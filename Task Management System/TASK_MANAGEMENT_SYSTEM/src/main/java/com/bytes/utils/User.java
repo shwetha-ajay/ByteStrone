@@ -1,32 +1,55 @@
 package com.bytes.utils;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name="users")
 public class User {
-	int UserID;
-	String name;
-	String email;
-	int RoleID;
+	@Id
+	 private int userID;
+//	@Column(name="\"name\"")
+	 private String name;
+//	@Column(name="\"email\"")
+	 private String email;
+	 @ManyToOne
+	 @JoinColumn(name="roleID")
+	 private UserRole roleID;
+	 
+	 public User() {
+		 
+	 }
+
 	
-	public User(int userID, String name, String email, int roleID) {
+	public User(int userID, String name, String email, UserRole roleID) {
 		super();
-		UserID = userID;
+		this.userID = userID;
 		this.name = name;
 		this.email = email;
-		RoleID = roleID;
+		this.roleID = roleID;
 	}
+
 
 	/**
 	 * @return the userID
 	 */
 	public int getUserID() {
-		return UserID;
+		return userID;
 	}
+
 
 	/**
 	 * @param userID the userID to set
 	 */
 	public void setUserID(int userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
+
 
 	/**
 	 * @return the name
@@ -35,12 +58,14 @@ public class User {
 		return name;
 	}
 
+
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	/**
 	 * @return the email
@@ -49,6 +74,7 @@ public class User {
 		return email;
 	}
 
+
 	/**
 	 * @param email the email to set
 	 */
@@ -56,21 +82,21 @@ public class User {
 		this.email = email;
 	}
 
+
 	/**
 	 * @return the roleID
 	 */
-	public int getRoleID() {
-		return RoleID;
+	public UserRole getRoleID() {
+		return roleID;
 	}
+
 
 	/**
 	 * @param roleID the roleID to set
 	 */
-	public void setRoleID(int roleID) {
-		RoleID = roleID;
+	public void setRoleID(UserRole roleID) {
+		this.roleID = roleID;
 	}
-	
-	
-	
+
 
 }
