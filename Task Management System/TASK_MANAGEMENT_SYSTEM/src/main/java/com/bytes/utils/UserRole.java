@@ -1,5 +1,6 @@
 package com.bytes.utils;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -9,12 +10,14 @@ import jakarta.persistence.Table;
 public class UserRole {
 	@Id
 	private int roleID;
-	private String roleName;
-	public UserRole(int roleID, String roleName) {
-		super();
-		this.roleID = roleID;
-		this.roleName = roleName;
-	}
+	@Column(name="name")
+	private String name;
+	
+//	public UserRole(int roleID, String name) {
+//		super();
+//		this.roleID = roleID;
+//		this.name = name;
+//	}
 	/**
 	 * @return the roleID
 	 */
@@ -30,14 +33,14 @@ public class UserRole {
 	/**
 	 * @return the roleName
 	 */
-	public String getRoleName() {
-		return roleName;
+	public String getName() {
+		return name;
 	}
 	/**
 	 * @param roleName the roleName to set
 	 */
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

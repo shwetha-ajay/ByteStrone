@@ -16,19 +16,19 @@ import com.bytes.utils.User;
 @RequestMapping(path="api/v1/user")
 public class UserController {
 	
-private final UserService userService;
+//private final UserService userService;
 	
-	@Autowired
-	public UserController (UserService userService) {
-		this.userService=new UserService();
-	}
-	
-    @PostMapping
-    
-	@GetMapping("/findstudents")
-	public List<User>getUsers(){
-		return userService.getUsers();
-	}
-
+//	@Autowired
+//	public UserController (UserService userService) {
+//		this.userService=new UserService();
+//	}
+//	
+//    @PostMapping()
+//    
+//	//@GetMapping("/findUsers")
+//	public List<User>getUsers(){
+//		return userService.getUsers();
+//	}
+//
 
 }

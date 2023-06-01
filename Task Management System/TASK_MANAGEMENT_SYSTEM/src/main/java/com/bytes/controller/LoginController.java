@@ -7,19 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bytes.service.UserRoleService;
-import com.bytes.utils.UserRole;
+import com.bytes.service.LoginService;
+import com.bytes.utils.Login;
 
 @RestController
-public class UserRoleController {
+public class LoginController {
 	@Autowired
-	UserRoleService userRoleService;
+	LoginService loginService;
 	
-	@RequestMapping(value="add", method=RequestMethod.POST)
+	@RequestMapping(value="login", method=RequestMethod.POST)
 	@PostMapping
-	public String adderUserRole(@RequestBody UserRole role) {
-		userRoleService.addUserRole(role);
-		return "added";
+	public String addLoginDetails(@RequestBody Login login) {
+		loginService.addLoginDetails(login);
+		return "details added";
 	}
+
+	
 
 }

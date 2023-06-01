@@ -1,5 +1,7 @@
 package com.bytes.utils;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -12,6 +14,7 @@ public class Task {
 	private int taskID;
 	private String title;
 	private String description;
+	private LocalDate dueDate;
 	private int priority;
 	private String status;
 	@ManyToOne
