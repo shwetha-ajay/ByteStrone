@@ -5,24 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bytes.service.UserRoleService;
 import com.bytes.service.UserService;
 import com.bytes.utils.User;
+import com.bytes.utils.UserRole;
 
 
-@RestController
-@RequestMapping(path="api/v1/user")
-public class UserController {
-	
-//private final UserService userService;
-	
-//	@Autowired
-//	public UserController (UserService userService) {
-//		this.userService=new UserService();
-//	}
-//	
 //    @PostMapping()
 //    
 //	//@GetMapping("/findUsers")
@@ -30,5 +23,17 @@ public class UserController {
 //		return userService.getUsers();
 //	}
 //
+	@RestController
+	public class UserController {
+		@Autowired
+		UserService userService;
+		
+		@RequestMapping(value="user", method=RequestMethod.POST)
+		@PostMapping
+		public String adderUser(@RequestBody User user) {
+			userService.addUser(user);
+			return "user added";
+		}
+
 
 }

@@ -11,6 +11,10 @@ public class Work {
 	private String title;
 	private String description;
 	
+	public Work() {
+		
+	}
+	
 	public Work(int workID, String title, String description) {
 		super();
 		this.workID = workID;
