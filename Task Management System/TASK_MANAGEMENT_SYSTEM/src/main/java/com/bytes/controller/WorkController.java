@@ -1,7 +1,6 @@
 package com.bytes.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +16,7 @@ public class WorkController {
 	    WorkService workService;
 		
 		@RequestMapping(value="work", method=RequestMethod.POST)
-		@PostMapping
+	
 		public String addWork(@RequestBody Work work) {
 			workService.addWork(work);
 			return "added";

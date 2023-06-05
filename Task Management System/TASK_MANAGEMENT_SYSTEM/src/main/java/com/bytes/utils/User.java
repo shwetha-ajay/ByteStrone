@@ -16,6 +16,7 @@ public class User {
 	 private String name;
 //	@Column(name="\"email\"")
 	 private String email;
+	 private String password;
 	 @ManyToOne
 	 @JoinColumn(name="roleID")
 	 private UserRole roleID;
@@ -31,6 +32,16 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.roleID = roleID;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 

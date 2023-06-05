@@ -1,5 +1,7 @@
 package com.bytes.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,16 +14,28 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	LoginRepository loginRepository;
 
-	@Override
+//	@Override
 //	public void addLoginDetails(Login login) {
 //		LoginRepository.save(login);
 
 	public ResponseEntity<Login> loginDetails(Login login) {
-		Login details = loginRepository.findByEmail(login.getEmail(),login.getPassword());
-		if (details.getEmail().equals(login.getEmail()) && details.getPassword().equals((login.getPassword()))) {
+		System.out.println("checkk");
+		Login details = loginRepository.findByEmail(login.getEmail());
+		
+//		if (details.getEmail().equals(login.getEmail())) {
 			return ResponseEntity.ok(details);
-		}
-		return (ResponseEntity<Login>) ResponseEntity.internalServerError();
+//		}
+//		System.out.println("errorr");
+//				return ResponseEntity.internalServerError().build();
+//		
+//		List<Login> loglist =loginRepository.findAll();
+//		for(Login log:loglist) {
+//			if (log.getEmail().equals(login.getEmail())&&log.getPassword().equals(login.getPassword())){
+//				return ResponseEntity.ok(log);
+//			}
+//			
+//		}
+//		return ResponseEntity.internalServerError().build();
 
 	}
  

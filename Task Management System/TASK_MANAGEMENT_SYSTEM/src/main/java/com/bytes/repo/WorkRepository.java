@@ -9,5 +9,6 @@ import com.bytes.utils.Work;
 
 	public interface WorkRepository extends JpaRepository<Work,Integer>{
 	
+	
 	}
 
