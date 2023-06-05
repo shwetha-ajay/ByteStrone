@@ -13,10 +13,10 @@ public class TaskServiceImpl implements TaskService {
 	@Autowired
     TaskRepository taskRepository;
 
-//	@Override
-//	public void addtaskDetails(Task tasks) {
-//		taskRepository.save(tasks);
-//	}
+	@Override
+	public void addtaskDetails(Task tasks) {
+		taskRepository.save(tasks);
+	}
 	@Override
 	public List<Task> getAllTasks(){
 		return taskRepository.findAll();
@@ -27,4 +27,12 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.deleteById(taskId);
     }
 	
-	}
+//    public void updateTaskStatus(String taskId, String status) {
+//        Task task = taskRepository.findById(taskId);
+//        if (task != null) {
+//          
+//        task.setStatus(status);
+//        taskRepository.save(task);
+//	}
+
+}

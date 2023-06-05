@@ -16,7 +16,7 @@ import com.bytes.service.UserService;
 import com.bytes.utils.Task;
 import com.bytes.utils.User;
 @RestController
-//@RequestMapping("/superAdmin")
+@RequestMapping("/superAdmin")
 public class SuperAdminController {
 
     @Autowired

@@ -8,8 +8,9 @@ public interface TaskRepository extends JpaRepository<Task, Integer>{
 	
 //	@Query("SELECT t FROM Task t ")
 //    List<Task> findAllTasks();
-
-    // Add other custom query methods as needed
+      
+//	Task findById(String taskId);
+      
 
 }
       
