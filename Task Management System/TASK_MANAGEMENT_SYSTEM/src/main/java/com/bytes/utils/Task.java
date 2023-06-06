@@ -28,7 +28,7 @@ public class Task {
 		
 	}
 	
-	public Task(int taskID, String title, String description, int priority, String status, User assignedTo,
+	public Task(int taskID, String title, String description, int priority, String status, User assignedTo,LocalDate dueDate,
 			Work workID) {
 		super();
 		this.taskID = taskID;
@@ -37,6 +37,7 @@ public class Task {
 		this.priority = priority;
 		this.status = status;
 		this.assignedTo = assignedTo;
+		this.dueDate=dueDate;
 		this.workID = workID;
 	}
 
@@ -136,6 +137,14 @@ public class Task {
 	 */
 	public void setWorkID(Work workID) {
 		this.workID = workID;
+	}
+
+	public LocalDate getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
 	}
 
 	

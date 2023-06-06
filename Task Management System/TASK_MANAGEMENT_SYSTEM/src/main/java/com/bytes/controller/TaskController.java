@@ -12,44 +12,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bytes.service.TaskService;
+import com.bytes.service.TaskServiceImpl;
+import com.bytes.service.UserServiceImpl;
 import com.bytes.utils.Task;
-@RestController
-@CrossOrigin(origins="http://localhost:4200")
-//@RequestMapping(value="task", method=RequestMethod.POST)
-public class TaskController {
-	
 
-		@Autowired
-		TaskService taskService;
-		
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
+//@RequestMapping("/taskmain")
+public class TaskController {
+
+	@Autowired
+	private TaskServiceImpl taskService;
+	private UserServiceImpl userService;
+
 //	create task	
-		@PostMapping("/task")
-		public String addtaskDetails(@RequestBody Task task) {
-			taskService.addtaskDetails(task);
-			
-			return "details added";
-		}
-		
-	//view tasks
-		@GetMapping("/viewTask")
-		public List<Task>getAllTasks(){
-			return taskService.getAllTasks();
-		}
-		
-    //delete tasks
-		  @DeleteMapping("/{taskId}")
-		    public ResponseEntity<String> deleteTask(@PathVariable int taskId) {
-		        taskService.deleteTask(taskId);
-		        return ResponseEntity.ok("Task deleted successfully");
-		    }
-//		  
-//		  @PutMapping("/{taskId}/status/{status}")
-//		    public ResponseEntity<String> updateTaskStatus(@PathVariable String taskId, @PathVariable String status) {
-//		        taskService.updateTaskStatus(taskId, status);
-//		        return ResponseEntity.ok("Task status updated successfully.");
-//		
+	@PostMapping("/task")
+	public String addtaskDetails(@RequestBody Task task) {
+		taskService.addtaskDetails(task);
+
+		return "details added";
+	}
+
+	// view tasks
+	@GetMapping("/viewTask")
+	public List<Task> getAllTasks() {
+		return taskService.getAllTasks();
+	}
+
+	// delete tasks
+	@DeleteMapping("/deleteTask/{taskId}")
+	public ResponseEntity<String> deleteTask(@PathVariable int taskId) {
+		taskService.deleteTask(taskId);
+		return ResponseEntity.ok("Task deleted successfully");
+	}
+
+	//	update status	  
+
+	@PutMapping("/status/{taskID}")
+	public Task updateTaskStatus(@PathVariable int taskID, @RequestBody Task task) {
+		return taskService.updateTaskStatus(taskID, task);
+	}
 }
