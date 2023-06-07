@@ -25,38 +25,12 @@ public class TaskServiceImpl implements TaskService {
 		return taskRepository.findAll();
 
 	}
-
+	@Override
 	public void deleteTask(int taskId) {
 		taskRepository.deleteById(taskId);
 	}
 
-	// updatestatus
-//    public Task updateTaskStatus(Long taskId, String newStatus, User user) {
-//        Task task = getTaskById(taskId);
-//        if (userService.hasPermission(user, task)) {
-//            task.setStatus(newStatus);
-//            return taskRepository.save(task);
-//        } else {
-//            throw new AccessDeniedException("You don't have permission to update the status of this task");
-//        }
-//    }
-	// @Override
-//    public Task updateTaskStatus(int taskID, String status) {
-//        Task task = taskRepository.findById(taskID);
-//        if (task == null) {
-//            throw new EntityNotFoundException("Task not found with ID: " + taskID);
-//        }
-//        task.setStatus(status);
-//        taskRepository.save(task);
-//        return task;
-//    }
-//    @Override
-//    public void updateTaskStatus(int taskID,Task task) {
-//    	Task currentStatus=taskRepository.findById(taskID);
-//    	currentStatus.setStatus(task.getStatus());
-//    	taskRepository.save(currentStatus);
-//    	
-//    }
+	
 	@Override
 	public Task updateTaskStatus(int taskID, Task task) {
 		Task existingStatus = taskRepository.findById(taskID).orElse(null);
@@ -67,5 +41,20 @@ public class TaskServiceImpl implements TaskService {
 			throw new EntityNotFoundException("Task not found with ID: " + taskID);
 
 		}
+	}
+	@Override
+	public Task updateTaskPriority(int taskID, Task task) {
+		Task existingPriority = taskRepository.findById(taskID).orElse(null);
+		if (existingPriority != null) {
+			existingPriority.setPriority(task.getPriority());
+			return taskRepository.save(existingPriority);
+		} else {
+			throw new EntityNotFoundException("Task not found with ID: " + taskID);
+
+		}
+//		  @Override
+//		    public List<Task> getTasksByUserId(int userId) {
+//		        return taskRepository.findByAssignedToUserId(userId);
+//		    }	
 	}
 }

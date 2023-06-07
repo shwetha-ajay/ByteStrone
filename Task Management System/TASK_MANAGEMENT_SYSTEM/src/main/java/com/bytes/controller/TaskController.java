@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bytes.repo.TaskRepository;
 import com.bytes.service.TaskServiceImpl;
 import com.bytes.service.UserServiceImpl;
 import com.bytes.utils.Task;
@@ -24,6 +25,7 @@ import com.bytes.utils.Task;
 public class TaskController {
 
 	@Autowired
+//	TaskRepository taskRepository;
 	private TaskServiceImpl taskService;
 	private UserServiceImpl userService;
 
@@ -31,7 +33,6 @@ public class TaskController {
 	@PostMapping("/task")
 	public String addtaskDetails(@RequestBody Task task) {
 		taskService.addtaskDetails(task);
-
 		return "details added";
 	}
 
@@ -54,4 +55,16 @@ public class TaskController {
 	public Task updateTaskStatus(@PathVariable int taskID, @RequestBody Task task) {
 		return taskService.updateTaskStatus(taskID, task);
 	}
+	
+//	update priority	  
+//	  @PreAuthorize("hasRole('admin')")
+	@PutMapping("/priority/{taskID}")
+	public Task updateTaskPriority(@PathVariable int taskID, @RequestBody Task task) {
+		return taskService.updateTaskPriority(taskID, task);
+}
+//    @GetMapping("/user/{userId}")
+//    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable int userId) {
+//        List<Task> tasks = taskService.getTasksByUserId(userId);
+//        return ResponseEntity.ok(tasks);
+//    }
 }

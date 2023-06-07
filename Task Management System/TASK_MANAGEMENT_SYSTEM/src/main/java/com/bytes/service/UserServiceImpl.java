@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bytes.repo.UserRepository;
+import com.bytes.utils.Task;
 import com.bytes.utils.User;
 
 @Service
@@ -44,11 +45,11 @@ public void addAdmin(User admin) {
 public List<User> getAllUsers(){
 	return userRepository.findAll();
 }
-//@Override
-//public Object deleteAdmin(int userId) {
-//	return userRepository.deleteById();
-//	
-//}
+@Override
+public void deleteAdmin(int userId) {
+	 userRepository.deleteById(userId);
+	
+}
 
-    
+  
 }
