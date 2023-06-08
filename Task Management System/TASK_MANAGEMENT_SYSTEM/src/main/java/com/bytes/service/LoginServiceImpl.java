@@ -20,7 +20,11 @@ public class LoginServiceImpl implements LoginService {
 
 	public ResponseEntity<Login> loginDetails(Login login) {
 		System.out.println("checkk");
-		if (login.getEmail() == "shwetha@gmail.com" && login.getPassword() == "admin123") {
+		System.out.println(login.getEmail() );
+		System.out.println(login.getPassword() );
+
+		
+		if (login.getEmail() == "shwethaknr@gmail.com" && login.getPassword() == "admin123") {
 			Login adminLogin = new Login();
 			adminLogin.setRoleName("superadmin");
 			return ResponseEntity.ok(adminLogin);

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.bytes.repo.TaskRepository;
@@ -99,6 +100,24 @@ public class TaskServiceImpl implements TaskService {
 //		    public List<Task> getTasksByUserId(int userID) {
 //				  return taskRepository.findByUserId(userID);
 //			}
+		//search by userid
+//		  @Override
+//		    public Task getTaskByUserId(int userId) {
+//		        java.util.Optional<Task> optionalTask = taskRepository.findById(userId);
+//		        return optionalTask.orElse(null);
+//		    
+//	}
+		  
+		  @Override
+		 public ResponseEntity<Task> getTaskByUserId(int userId){
+			  List<Task> tasklist=taskRepository.findAll();
+				for(Task task:tasklist){
+					if (task.getUserID().getUserID()==userId) {
+						return ResponseEntity.ok(task);
+					}
+					
+				}	return ResponseEntity.notFound().build();
+		  }
 
 	
 }

@@ -2,6 +2,8 @@ package com.bytes.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.bytes.utils.Task;
 
 public interface TaskService {
@@ -23,6 +25,9 @@ public interface TaskService {
      
 //	List<Task> getTasksByUserId(int userId);
 	Task getTaskById(int taskId);
+	ResponseEntity<Task> getTaskByUserId(int userId);
+
 
 //    List<Task> getTasksByUserId(int userID);
+   
 }

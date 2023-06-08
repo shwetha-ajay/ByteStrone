@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bytes.repo.TaskRepository;
 import com.bytes.service.TaskServiceImpl;
 import com.bytes.service.UserServiceImpl;
 import com.bytes.utils.Task;
@@ -29,9 +30,9 @@ public class TaskController {
 
 //	create task	
 	@PostMapping("/task")
-	public String addtaskDetails(@RequestBody Task task) {
+	public ResponseEntity<Integer> addtaskDetails(@RequestBody Task task) {
 		taskService.addtaskDetails(task);
-		return "details added";
+		return ResponseEntity.ok(200);
 	}
 
 	// view tasks
@@ -42,9 +43,9 @@ public class TaskController {
 
 	// delete tasks
 	@DeleteMapping("/deleteTask/{taskId}")
-	public ResponseEntity<String> deleteTask(@PathVariable int taskId) {
+	public ResponseEntity<Integer> deleteTask(@PathVariable int taskId) {
 		taskService.deleteTask(taskId);
-		return ResponseEntity.ok("Task deleted successfully");
+		return ResponseEntity.ok(200);
 	}
 
 	// update status
@@ -89,5 +90,16 @@ public class TaskController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-
+	
+	
+	//display task by userid
+		@GetMapping("searchByuser/{userId}")
+		public ResponseEntity<Task> getTaskByUserId(@PathVariable int userId) {
+			return taskService.getTaskByUserId(userId);
+		}
+//			
+//			
+//		}
+		
+	
 }

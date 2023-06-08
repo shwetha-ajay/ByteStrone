@@ -21,5 +21,4 @@ public class WorkController {
 		workService.addWork(work);
 		return "added";
 	}
-
 }
