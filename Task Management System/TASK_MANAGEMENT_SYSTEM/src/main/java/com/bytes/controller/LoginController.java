@@ -27,15 +27,8 @@ public class LoginController {
 	
 //	@PostMapping()
 	
-//	@GetMapping("/fetchUsers")
-//
-//	public List<User> fetchUsers(){
-//
-//	System.out.println("Hello");
-//
-//	return userRepository.findAll();
-//	}
-//	
+
+	
 	 @PostMapping("/login")
 	public ResponseEntity<Login> loginUser(@RequestBody Login login){
 

@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bytes.repo.TaskRepository;
 import com.bytes.service.TaskServiceImpl;
 import com.bytes.service.UserServiceImpl;
 import com.bytes.utils.Task;
@@ -49,22 +47,47 @@ public class TaskController {
 		return ResponseEntity.ok("Task deleted successfully");
 	}
 
-	//	update status	  
+	// update status
 
-	@PutMapping("/status/{taskID}")
-	public Task updateTaskStatus(@PathVariable int taskID, @RequestBody Task task) {
-		return taskService.updateTaskStatus(taskID, task);
+//	@PutMapping("/status/{taskID}")
+//	public Task updateTaskStatus(@PathVariable int taskID, @RequestBody Task task) {
+//		return taskService.updateTaskStatus(taskID, task);
+//	}
+	
+	@PostMapping("/updatestatus")
+	public String updateTaskStatus(@RequestBody Object task) {
+		taskService.updateTaskStatus(task);
+		return "status changed";
 	}
+
 	
 //	update priority	  
 //	  @PreAuthorize("hasRole('admin')")
 	@PutMapping("/priority/{taskID}")
 	public Task updateTaskPriority(@PathVariable int taskID, @RequestBody Task task) {
 		return taskService.updateTaskPriority(taskID, task);
-}
-//    @GetMapping("/user/{userId}")
-//    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable int userId) {
-//        List<Task> tasks = taskService.getTasksByUserId(userId);
-//        return ResponseEntity.ok(tasks);
-//    }
+	}
+
+	
+//	 @GetMapping("/user/{userId}")
+//	    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable int userId) {
+//	        List<Task> tasks = taskService.getTasksByUserId(userId);
+//	        if (!tasks.isEmpty()) {
+//	            return ResponseEntity.ok(tasks);
+//	        } else {
+//	            return ResponseEntity.notFound().build();
+//	        }
+//	    }
+	
+	//display task by id
+	@GetMapping("searchBytask/{taskId}")
+	public ResponseEntity<Task> getTaskById(@PathVariable int taskId) {
+		Task task = taskService.getTaskById(taskId);
+		if (task != null) {
+			return ResponseEntity.ok(task);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
 }

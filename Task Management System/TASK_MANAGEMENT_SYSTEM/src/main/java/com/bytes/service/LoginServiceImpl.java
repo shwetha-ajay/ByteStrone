@@ -20,29 +20,25 @@ public class LoginServiceImpl implements LoginService {
 
 	public ResponseEntity<Login> loginDetails(Login login) {
 		System.out.println("checkk");
-		if(login.getEmail()=="shwetha@gmail.com" && login.getPassword()=="admin123") {
+		if (login.getEmail() == "shwetha@gmail.com" && login.getPassword() == "admin123") {
 			Login adminLogin = new Login();
 			adminLogin.setRoleName("superadmin");
 			return ResponseEntity.ok(adminLogin);
 
-		}
-		Login details = loginRepository.findByEmail(login.getEmail());
-		
-//		if (details.getEmail().equals(login.getEmail())) {
+		} else {
+			Login details = loginRepository.findByEmail(login.getEmail());
+			if (details.getEmail().equals(login.getEmail()) && details.getPassword().equals(login.getPassword())) {
+				String role = details.getRoleName();
+				if (role.equals("admin") || role.equals("user")) {
+					return ResponseEntity.ok(details);
+				}
+			}
+
 			return ResponseEntity.ok(details);
-//		}
+
 //		System.out.println("errorr");
 //				return ResponseEntity.internalServerError().build();
-//		
-//		List<Login> loglist =loginRepository.findAll();
-//		for(Login log:loglist) {
-//			if (log.getEmail().equals(login.getEmail())&&log.getPassword().equals(login.getPassword())){
-//				return ResponseEntity.ok(log);
-//			}
-//			
-//		}
-//		return ResponseEntity.internalServerError().build();
-
+//	}
+		}
 	}
- 
 }

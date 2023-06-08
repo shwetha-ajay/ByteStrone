@@ -2,6 +2,8 @@ package com.bytes.utils;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +21,8 @@ public class Task {
 	private String status;
 	@ManyToOne
 	@JoinColumn(name="userID")
-	private User assignedTo;
+//	@JsonIdentityReference(alwaysAsId = true)
+	private User userID;
 	@ManyToOne
 	@JoinColumn(name="workID")
 	private Work workID;
@@ -28,7 +31,7 @@ public class Task {
 		
 	}
 	
-	public Task(int taskID, String title, String description, int priority, String status, User assignedTo,LocalDate dueDate,
+	public Task(int taskID, String title, String description, int priority, String status, User userID,LocalDate dueDate,
 			Work workID) {
 		super();
 		this.taskID = taskID;
@@ -36,7 +39,7 @@ public class Task {
 		this.description = description;
 		this.priority = priority;
 		this.status = status;
-		this.assignedTo = assignedTo;
+		this.userID = userID;
 		this.dueDate=dueDate;
 		this.workID = workID;
 	}
@@ -114,15 +117,15 @@ public class Task {
 	/**
 	 * @return the assignedTo
 	 */
-	public User getAssignedTo() {
-		return assignedTo;
+	public User getUserID() {
+		return userID;
 	}
 
 	/**
 	 * @param assignedTo the assignedTo to set
 	 */
-	public void setAssignedTo(User assignedTo) {
-		this.assignedTo = assignedTo;
+	public void setUserID(User userID) {
+		this.userID = userID;
 	}
 
 	/**

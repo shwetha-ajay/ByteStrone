@@ -14,8 +14,8 @@ import com.bytes.utils.UserRole;
 public class UserRoleController {
 	@Autowired
 	UserRoleService userRoleService;
-	
-	@RequestMapping(value="add", method=RequestMethod.POST)
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
 	@PostMapping
 	public String adderUserRole(@RequestBody UserRole role) {
 		userRoleService.addUserRole(role);

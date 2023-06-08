@@ -2,6 +2,9 @@ package com.bytes.service;
 
 import java.util.List;
 
+import javax.naming.AuthenticationException;
+
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +53,18 @@ public void deleteAdmin(int userId) {
 	 userRepository.deleteById(userId);
 	
 }
-
+//public User getCurrentUser() {
+//    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//    if (authentication == null || !authentication.isAuthenticated()) {
+//        throw new AuthenticationException("User not authenticated");
+//    }
+//
+//    Object principal = authentication.getPrincipal();
+//    if (principal instanceof User) {
+//        return (User) principal;
+//    }
+//
+//    throw new IllegalStateException("User details not available");
+//}
   
 }

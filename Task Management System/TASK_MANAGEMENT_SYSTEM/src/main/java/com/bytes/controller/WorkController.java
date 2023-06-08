@@ -8,19 +8,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bytes.service.WorkService;
 import com.bytes.utils.Work;
+
 @RestController
 public class WorkController {
-	
-	
-		@Autowired
-	    WorkService workService;
-		
-		@RequestMapping(value="work", method=RequestMethod.POST)
-	
-		public String addWork(@RequestBody Work work) {
-			workService.addWork(work);
-			return "added";
-		}
 
+	@Autowired
+	WorkService workService;
+
+	@RequestMapping(value = "work", method = RequestMethod.POST)
+
+	public String addWork(@RequestBody Work work) {
+		workService.addWork(work);
+		return "added";
 	}
 
+}
