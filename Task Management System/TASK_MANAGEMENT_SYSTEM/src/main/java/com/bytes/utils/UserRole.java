@@ -18,27 +18,19 @@ public class UserRole {
 //		this.roleID = roleID;
 //		this.name = name;
 //	}
-	/**
-	 * @return the roleID
-	 */
+	
 	public int getRoleID() {
 		return roleID;
 	}
-	/**
-	 * @param roleID the roleID to set
-	 */
+	
 	public void setRoleID(int roleID) {
 		this.roleID = roleID;
 	}
-	/**
-	 * @return the roleName
-	 */
+
 	public String getName() {
 		return name;
 	}
-	/**
-	 * @param roleName the roleName to set
-	 */
+	
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -7,5 +7,5 @@ import com.bytes.utils.UserRole;
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole,Integer>{
 
-//	UserRole findById(String string);
+
 }

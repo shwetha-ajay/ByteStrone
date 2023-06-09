@@ -8,6 +8,6 @@ public interface LoginService {
 
 	//public Login addLoginDetails(Login login);
 	
-	public ResponseEntity<Login>  loginDetails(Login login);
+	 public ResponseEntity<Login>  loginDetails(Login login);
 	
 }

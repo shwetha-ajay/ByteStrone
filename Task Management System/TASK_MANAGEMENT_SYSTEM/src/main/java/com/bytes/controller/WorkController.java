@@ -16,7 +16,6 @@ public class WorkController {
 	WorkService workService;
 
 	@RequestMapping(value = "work", method = RequestMethod.POST)
-
 	public String addWork(@RequestBody Work work) {
 		workService.addWork(work);
 		return "added";

@@ -44,66 +44,34 @@ public class User {
 		this.password = password;
 	}
 
-
-	/**
-	 * @return the userID
-	 */
 	public int getUserID() {
 		return userID;
 	}
 
-
-	/**
-	 * @param userID the userID to set
-	 */
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
 
-
-	/**
-	 * @return the name
-	 */
 	public String getName() {
 		return name;
 	}
 
-
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-	/**
-	 * @return the email
-	 */
 	public String getEmail() {
 		return email;
 	}
 
-
-	/**
-	 * @param email the email to set
-	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-	/**
-	 * @return the roleID
-	 */
 	public UserRole getRoleID() {
 		return roleID;
 	}
 
-
-	/**
-	 * @param roleID the roleID to set
-	 */
 	public void setRoleID(UserRole roleID) {
 		this.roleID = roleID;
 	}

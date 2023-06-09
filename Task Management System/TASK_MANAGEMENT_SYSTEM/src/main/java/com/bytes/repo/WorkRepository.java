@@ -6,9 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.bytes.utils.Work;
 
 @Repository
-
-	public interface WorkRepository extends JpaRepository<Work,Integer>{
-	
+public interface WorkRepository extends JpaRepository<Work,Integer>{
 	
 	}
 

@@ -8,7 +8,6 @@ import com.bytes.utils.Login;
 @Repository
 public interface LoginRepository extends JpaRepository<Login, String> {
 
-	Login findByEmail(String email);
-	// public Login findByEmail(String email,String password);
+	   Login findByEmail(String email);
 
 }
