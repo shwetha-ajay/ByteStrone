@@ -1,0 +1,14 @@
+
+    <div class="login-page">
+        <h4></h4>
+        <div class="form">
+         
+          <form class="login-form">
+            <input type="text"  name="email" [(ngModel)]="email" placeholder="User Email">
+            <input type="password"name="password" [(ngModel)]="password" placeholder="Password">
+            
+            <input type="text" name="userRole" [(ngModel)]="role" placeholder="Role ">
+            <button type="submit" (click)="doLogin()" >login</button>          
+          </form>
+        </div>
+    </div>
