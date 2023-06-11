@@ -11,29 +11,16 @@ import com.bytes.service.LoginService;
 import com.bytes.utils.Login;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 	@Autowired
 	LoginService loginService;
 	UserRepository userRepository;
-	
-//	@RequestMapping(value="login", method=RequestMethod.POST)
 
-//  PostMapping()
-//	public Login addLoginDetails(@RequestBody Login login) {
-//		loginService.addLoginDetails(login);
-//		return "added";
-	
-	
 	@PostMapping("/login")
-	public ResponseEntity<Login> loginUser(@RequestBody Login login){
+	public ResponseEntity<Login> loginUser(@RequestBody Login login) {
 		return loginService.loginDetails(login);
 
-		//System.out.println((newLog.getEmail()));
-		//return ResponseEntity.ok(newLog);
-		}
+		// return ResponseEntity.ok(newLog);
 	}
-
-	
-
-
+}

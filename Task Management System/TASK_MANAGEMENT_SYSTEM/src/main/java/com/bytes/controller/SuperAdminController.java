@@ -14,48 +14,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bytes.service.UserService;
 import com.bytes.utils.User;
+
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 //@RequestMapping("/superAdmin")
 public class SuperAdminController {
 
-    @Autowired
-    UserService userService;
+	@Autowired
+	UserService userService;
 
-//    public SuperAdminController(SuperAdminService superAdminService) {
-//    this.superAdminService = superAdminService;
-//}
+	// add new admin
+	@PostMapping("/addAdmin")
+	public ResponseEntity<Integer> addAdmin(@RequestBody User admin) {
+		userService.addAdmin(admin);
+		return ResponseEntity.ok(200);
+	}
 
-//    @PostMapping("/users/addAdmin")
-//    public ResponseEntity<?> addAdmin(@RequestBody int userId,@RequestBody String password,@RequestBody int roleId,@RequestBody String name,@RequestBody String email) {
-//         userService.addAdmin(userId, password, roleId, name, email);
-//         return ResponseEntity.ok("Admin created successfully");
-//}
-
-    //add new admin
-    @PostMapping("/addAdmin")
-    public String addAdmin(@RequestBody User admin) {
-    	userService.addAdmin(admin);
-    	return "new admin added";
-    	   	
-    }
-    
-    //view admin list
-    @GetMapping("/viewAdmin")
-	public List<User>getAllUsers(){
+	// view admin list
+	@GetMapping("/viewAdmin")
+	public List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
-    
-//	
-//    //delete admin
-		  @DeleteMapping("deleteAdmin/{userId}")
-		    public ResponseEntity<String> deleteAdmin(@PathVariable int userId) {
-		        userService.deleteAdmin(userId);
-		        return ResponseEntity.ok("admin deleted");
-		    }
 
-		}
-	
-    
-    
+	// delete admin
+	@DeleteMapping("deleteAdmin/{userId}")
+	public ResponseEntity<Integer> deleteAdmin(@PathVariable int userId) {
+		userService.deleteAdmin(userId);
+		return ResponseEntity.ok(200);
+	}
 
+}

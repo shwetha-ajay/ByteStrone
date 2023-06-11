@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.bytes.service.TaskServiceImpl;
 import com.bytes.service.UserServiceImpl;
+import com.bytes.utils.ReturnTasksWithScore;
 import com.bytes.utils.Task;
 
 @RestController
@@ -45,28 +46,24 @@ public class TaskController {
 		return ResponseEntity.ok(200);
 	}
 
-	
 //  update status
-
 //	@PutMapping("/status/{taskID}")
 //	public Task updateTaskStatus(@PathVariable int taskID, @RequestBody Task task) {
 //		return taskService.updateTaskStatus(taskID, task);
 //	}
-	
+
 	@PostMapping("/updatestatus")
 	public String updateTaskStatus(@RequestBody Object task) {
 		taskService.updateTaskStatus(task);
 		return "status changed";
 	}
 
-	
 //	update priority	  
 	@PutMapping("/priority/{taskID}")
 	public Task updateTaskPriority(@PathVariable int taskID, @RequestBody Task task) {
 		return taskService.updateTaskPriority(taskID, task);
 	}
 
-	
 //  display task by id
 	@GetMapping("searchBytask/{taskId}")
 	public ResponseEntity<Task> getTaskById(@PathVariable int taskId) {
@@ -77,22 +74,18 @@ public class TaskController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
-	
+
 //  display task by userid
 	@GetMapping("searchByuser/{userId}")
 	public ResponseEntity<Task> getTaskByUserId(@PathVariable int userId) {
 		return taskService.getTaskByUserId(userId);
 	}
-		
-}
-//@GetMapping("/user/{userId}")
-//public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable int userId) {
-//    List<Task> tasks = taskService.getTasksByUserId(userId);
-//    if (!tasks.isEmpty()) {
-//        return ResponseEntity.ok(tasks);
-//    } else {
-//        return ResponseEntity.notFound().build();
-//    }
-//}
 
+//  automatic priority calculation
+	@GetMapping("/priorityscore/{taskId}")
+	public List<ReturnTasksWithScore> getTaskPriority(@PathVariable int taskId) {
+		List<Task> task = taskService.getAllTasks();
+		return taskService.calculatePriorityScore(task);
+	}
+
+}

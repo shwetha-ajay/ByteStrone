@@ -9,15 +9,12 @@ import com.bytes.utils.Work;
 @Service
 public class WorkServiceImp implements WorkService {
 	@Autowired
-    WorkRepository workRepository;
-	
-	
+	WorkRepository workRepository;
+
 	@Override
 	public void addWork(Work work) {
 		workRepository.save(work);
-		
+
 	}
 
 }
-
-	

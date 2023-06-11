@@ -6,8 +6,8 @@ import com.bytes.utils.Login;
 
 public interface LoginService {
 
-	//public Login addLoginDetails(Login login);
-	
-	 public ResponseEntity<Login>  loginDetails(Login login);
-	
+	// public Login addLoginDetails(Login login);
+
+	public ResponseEntity<Login> loginDetails(Login login);
+
 }

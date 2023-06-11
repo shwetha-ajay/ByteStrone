@@ -6,16 +6,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="SuperAdmin")
+@Table(name = "SuperAdmin")
 public class SuperAdmin {
 	@Id
-	@Column(name="\"usernName\"")
+	@Column(name = "\"usernName\"")
 	private String userName;
-	@Column(name="\"password\"")
+	@Column(name = "\"password\"")
 	private String password;
-	
+
 	public SuperAdmin() {
-		
+
 	}
-	
+
 }

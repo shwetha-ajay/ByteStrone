@@ -6,26 +6,24 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 	@Id
-	 private int userID;
+	private int userID;
 //	@Column(name="\"name\"")
-	 private String name;
+	private String name;
 //	@Column(name="\"email\"")
-	 private String email;
-	 private String password;
-	 @ManyToOne
-	 @JoinColumn(name="roleID")
-	 private UserRole roleID;
-	 
-	 public User() {
-		 
-	 }
+	private String email;
+	private String password;
+	@ManyToOne
+	@JoinColumn(name = "roleID")
+	private UserRole roleID;
 
-	
+	public User() {
+
+	}
+
 	public User(int userID, String name, String email, UserRole roleID) {
 		super();
 		this.userID = userID;
@@ -34,11 +32,9 @@ public class User {
 		this.roleID = roleID;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
@@ -75,6 +71,5 @@ public class User {
 	public void setRoleID(UserRole roleID) {
 		this.roleID = roleID;
 	}
-
 
 }

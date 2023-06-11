@@ -3,18 +3,19 @@ package com.bytes.utils;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
 @Entity
-@Table(name="Work")
+@Table(name = "Work")
 public class Work {
 	@Id
 	private int workID;
 	private String title;
 	private String description;
-	
+
 	public Work() {
-		
+
 	}
-	
+
 	public Work(int workID, String title, String description) {
 		super();
 		this.workID = workID;
@@ -45,6 +46,5 @@ public class Work {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 
 }

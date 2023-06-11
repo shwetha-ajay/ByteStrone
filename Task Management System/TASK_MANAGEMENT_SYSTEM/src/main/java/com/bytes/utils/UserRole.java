@@ -6,23 +6,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="userrole")
+@Table(name = "userrole")
 public class UserRole {
 	@Id
 	private int roleID;
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
-	
-//	public UserRole(int roleID, String name) {
-//		super();
-//		this.roleID = roleID;
-//		this.name = name;
-//	}
-	
+
 	public int getRoleID() {
 		return roleID;
 	}
-	
+
 	public void setRoleID(int roleID) {
 		this.roleID = roleID;
 	}
@@ -30,11 +24,9 @@ public class UserRole {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 }

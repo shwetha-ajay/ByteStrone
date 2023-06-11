@@ -7,17 +7,14 @@ import com.bytes.utils.UserRole;
 
 @Service
 public class UserRoleImpl implements UserRoleService {
-	
 
 	@Autowired
-    UserRoleRepository userRoleRepository;
-	
-	
-	
+	UserRoleRepository userRoleRepository;
+
 	@Override
 	public void addUserRole(UserRole role) {
 		userRoleRepository.save(role);
-		
+
 	}
-    
+
 }

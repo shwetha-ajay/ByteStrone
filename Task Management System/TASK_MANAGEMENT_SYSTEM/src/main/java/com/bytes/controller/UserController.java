@@ -12,15 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bytes.service.UserService;
 import com.bytes.service.UserServiceImpl;
 import com.bytes.utils.User;
-    
-//	@GetMapping("/findUsers")
-//	public List<User>getUsers(){
-//		return userService.getUsers();
-//	}
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RestController
-    public class UserController {
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
+public class UserController {
 	@Autowired
 	UserService userService;
 	UserServiceImpl userServiceImpl;
@@ -32,12 +27,12 @@ import com.bytes.utils.User;
 		userService.addUser(user);
 		return "user added";
 	}
-	
+
 //  fetch userid by email
-    @GetMapping("/userid")
-    public ResponseEntity<Integer> getUserIdByEmail(@RequestParam String email) {
-        int userId = userService.getUserIdByEmail(email);
-        return ResponseEntity.ok(userId);
-    }
+	@GetMapping("/userid")
+	public ResponseEntity<Integer> getUserIdByEmail(@RequestParam String email) {
+		int userId = userService.getUserIdByEmail(email);
+		return ResponseEntity.ok(userId);
+	}
 
 }
