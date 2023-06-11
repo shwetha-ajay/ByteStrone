@@ -29,18 +29,21 @@ doLogin(){
       this.response=res;
       console.log(this.response.role)
       this.loginservice.setEmail(this.email)
+      console.log(this.email);
+      this.loginservice.setRole(this.role)
       if(this.response.roleName=="superadmin"){
         this.router.navigate(["/dashboard"])
       }
       if(this.response.roleName=="Admin"){
         this.router.navigate(["/user"])
+        
       }
       if(this.response.roleName=="User"){
         this.router.navigate(["/user"])
       }
     })
 
-    // console.log(this.email,this.password,this.role);
+
    
   }
 }

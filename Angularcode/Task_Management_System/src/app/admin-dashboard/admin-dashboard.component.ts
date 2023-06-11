@@ -25,6 +25,7 @@ export class AdminDashboardComponent implements OnInit {
     this.getUsers();
   }
 
+
   getUsers(): void {
     this.loginService.getUsers().subscribe((users: User[]) => {
       this.users = users;
@@ -34,7 +35,6 @@ export class AdminDashboardComponent implements OnInit {
    
   
   deleteUser(userID:number){
-    console.log("object");
     console.log(userID);
 
     this.loginService.deleteUser(userID).subscribe((res)=>{
@@ -43,6 +43,7 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
   
+
   addUser(): void {
     this.newUser.userID=this.userID
     this.newUser.name=this.name
@@ -54,10 +55,9 @@ export class AdminDashboardComponent implements OnInit {
       this.users.push(user);
       console.log(user);
       this.newUser = new User();
+      this.getUsers()
     });
   }
-
-  
 }
 
 

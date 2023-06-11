@@ -22,18 +22,7 @@
                 <button><i class="ri-search-2-line"></i></button>
             </div>
             <div class="notification--profile">
-                <div class="picon lock">
-                    <i class="ri-lock-line"></i>
-                </div>
-                <div class="picon bell">
-                    <i class="ri-notification-2-line"></i>
-                </div>
-                <div class="picon chat">
-                    <i class="ri-wechat-2-line"></i>
-                </div>
-                <div class="picon profile">
-                    <img src="assets/images/profile.jpg" alt="">
-                </div>
+                
             </div>
         </div>
     </section>
@@ -53,7 +42,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a >
                         <span class="icon icon-3"><i class="ri-user-2-line"></i></span>
                         <span class="sidebar--item" style="white-space: nowrap;">Works</span>
                     </a>
@@ -82,7 +71,7 @@
                 
                 <div class="recent--patients">
                 <div class="title">
-                    <h2 class="section--title">User Admins</h2>
+                    <h3 class="section--title">User Admins</h3>
                     <!-- <button class="add"><i class="ri-add-line"></i>Add new admin</button> -->
                 </div>
              
@@ -91,25 +80,25 @@
 
                 <!-- <app-admin></app-admin> -->
     <form (submit)="addUser()">
-    <label>Userid</label>
-    <input type="number" name="userid"[(ngModel)]="userID">               
-    <label>name</label>
-    <input type="text"name="name"[(ngModel)]="name">
-    <label>email</label>
-    <input type="text" name="email"[(ngModel)]="email">
-    <label>password</label>
+    <label>UserID: </label>
+    <input type="number" name="userid"[(ngModel)]="userID">&nbsp;               
+    <label>Name</label>
+    <input type="text"name="name"[(ngModel)]="name">&nbsp;
+    <label>Email</label>
+    <input type="text" name="email"[(ngModel)]="email">&nbsp;
+    <label>Password</label>
     <input type="password" name="password"[(ngModel)]="password">&nbsp;
-    <button (click)="addUser()" style="background-color: #5073fb;">Add new User</button>
+    <button (click)="addUser()">Add new User</button>
     </form>
     <br><br>
 
     <table class="table table-striped table-light">
     <thead style="background-color: rgb(56, 17, 156);">
         <tr>
-        <th scope="col">UserId</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">password</th>
+        <th scope="col">USER ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">PASSWORD</th>
         </tr>
     </thead>
     <tbody>

@@ -1,43 +1,56 @@
 
+<div class="header"> 
+  <a href="/dashboard" (click)="onclick()" class="previous round">&#8249;</a> 
+  <h1 class="centered-title">Tasks To Do</h1> 
+  <div class="search-box"> 
+    <input type="number" placeholder="Search" (input)="onSearch()" [(ngModel)]="search"> 
+  </div> 
+</div>
 
-<h1>Tasks To Do</h1>
 
 <!-- Add New Task Form -->
 <div class="add-task">
-  <h2>Add New Task</h2>
+  <div class="column">
+    <div>
+  <h4>Add New Task</h4>
+    </div>
+
+  <div> 
   <form (submit)="addTask()">
-    <input type="number" placeholder="Id" name="taskid" [(ngModel)]="taskID" required>&nbsp;
-    <input type="text" placeholder="Title" name="title" [(ngModel)]="title" required>&nbsp;
-    <input type="text" placeholder="description" name="description" [(ngModel)]="description" required>&nbsp;
-    <input type="date" placeholder="due Date" name="duedate" [(ngModel)]="dueDate" required>&nbsp;
-    <select name="status"  placeholder="Status"[(ngModel)]="status" required>&nbsp;
+    <input type="number" placeholder="Id" name="taskid" [(ngModel)]="taskID" required>
+    <input type="text" placeholder="Title" name="title" [(ngModel)]="title" required>
+    <input type="text" placeholder="description" name="description" [(ngModel)]="description" required>
+    <input type="date" placeholder="due Date" name="duedate" [(ngModel)]="dueDate" required>
+    <select class="status" name="status"  placeholder="Status"[(ngModel)]="status" required>
       <option value="">Select Status</option>
       <option value="in progress">In Progress</option>
       <option value="completed">Completed</option>
       <option value="deferred">Deferred</option>
-    </select>&nbsp;
+    </select>
     <input type="number" placeholder="Priority" name="priority" [(ngModel)]="priority" required>
-    &nbsp;
     <input type="number" placeholder="Assigned To(userId)" name="assignedto" [(ngModel)]="userID" required>
-    <!-- <input type="number" placeholder="work ID" name="workid" [(ngModel)]="workID" required> -->&nbsp;
-    <button type="submit" (click)="addTask()">Add Task</button>
+    <button type="submit" class="add" (click)="addTask()">Add Task</button>
   </form>
+  </div>
+  </div>
 </div>
 
-<button (click)="filter()">Filter by priority</button><br>
-<button (click)="tasksPriority()">Sort</button>
+<button (click)="filter()">Filter by priority</button>&nbsp;&nbsp;
+<button (click)="tasksPriority()">Sort</button><br><br>
+
 <!-- Task Table -->
-<table>
+<table *ngIf="showTable">
   <thead>
     <tr>
       <th>ID</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Due Date</th>
-      <th>Status</th>
-      <th>Priority</th>
-      <th>Assigned To</th>
-      <!-- <th>Work ID</th> -->
+      <th>TITLE</th>
+      <th>DESCRIPTION</th>
+      <th>DUE DATE</th>
+      <th>STATUS</th>
+      <th>PRIORITY</th>
+      <th>ASSIGNED TO</th>
+      <th></th>
+      
       
     </tr>
   </thead>
@@ -53,17 +66,46 @@
         <option value="Completed">Completed</option>
         <option value="Deferred">Deferred</option>
         </select>&nbsp;
-      <button (click)="updateStatus(task.taskID,task.status)">update</button>
+      <button (click)="updateStatus(task.taskID,task.status)">Update</button>
       </td>
       <td>{{ task.priority }}</td>
       <td>{{task.userID?.userID}}</td> 
       <td><button type="submit" (click) ="onDelete(task.taskID)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
 
-    
-      <!-- <td>{{ task.workID }}</td> -->
-      <td>
-       
+<table *ngIf="!showTable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due Date</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Assigned To</th>
+      <th></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of searchedTasks">
+      <td>{{ task.taskID }}</td>
+      <td>{{ task.title }}</td>
+      <td>{{ task.description }}</td>
+      <td>{{ task.dueDate }}</td>
+      <td>    
+        <select  [(ngModel)]="task.status">
+        <option value="In progress" >In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Deferred">Deferred</option>
+        </select>&nbsp;
+      <button (click)="updateStatus(task.taskID,task.status)">update</button>
       </td>
+      <td>{{ task.priority }}</td>
+      <td>{{task.userID?.userID}}</td> 
+      <td><button type="submit" (click) ="onDelete(task.taskID)">Delete</button></td>      
     </tr>
   </tbody>
 </table>

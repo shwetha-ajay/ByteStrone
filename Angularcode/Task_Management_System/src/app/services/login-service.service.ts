@@ -11,11 +11,20 @@ import { User } from '../class/user';
 export class LoginServiceService {
 
   email!:string;
+  roleName!:string;
+  
+
   getEmail(){
     return this.email
   }
   setEmail(email:string){
     this.email=email;
+  }
+  setRole(roleName:string){
+    this.roleName=roleName;
+  }
+  getRole(){
+    return this.roleName
   }
 
  url="http://localhost:8080/login"
@@ -77,6 +86,7 @@ export class LoginServiceService {
 
     public updateStatus(taskId:number,status:string): Observable<any> {
       console.log(taskId);
+      console.log(status);
       const statusUpdate={
         taskId:taskId,
         status:status

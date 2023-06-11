@@ -1,19 +1,46 @@
-/* dashboard.component.css */
 
 h1 {
     text-align: center;
+      width: 100%; 
   }
   
+  a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+  }
+
+  a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .previous {
+    background-color: #2d3e4f;
+    color: rgb(242, 238, 238);
+  }
+
+  .round {
+    border-radius: 50%;
+  }
+
   .add-task {
     margin-bottom: 20px;
+    padding-left: 10px;
   }
   
   table {
-    width: 100%;
+    margin-left: 3%;
+    width: 87%;
     border-collapse: collapse;
   }
-  
+
+  tr{
+    width: 50%;
+  }
+ 
   th, td {
+    padding-left: 20px;
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -22,12 +49,74 @@ h1 {
   th {
     background-color: #f2f2f2;
   }
-  
+
+  .status{
+    margin-left: 3px ;
+  }
+
   button {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.7rem;
+  transition: background-color 0.3s, transform 0.3s
+  }
+
+  .add-task{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .column{
+    display: flex;
+    flex-direction: column;
+  }
+
+  input{
+    margin-left: 0.2rem;
+  }
+
+  .add{
+    margin-left: 5px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
   }
   
+  .centered-title {
+    flex-grow: 1;
+    text-align: center;
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .search-box input {
+    margin-left: 10px;
+    align-self: flex-end;
+  }
+
+  button:hover {
+    background-color: #949698;
+    transform: scale(1.05);
+  }
+ 
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    background-color: #1c3143;
+    transform: scale(0.95);
+  }

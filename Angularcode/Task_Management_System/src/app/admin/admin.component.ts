@@ -27,12 +27,13 @@ import { Taskscores } from '../class/taskscores';
     description!:string;
     dueDate!:Date;
     userID!:number;
-    // assignedTo!:number;
     workID!:number;
     scores: number[] = [];
-     taskScores: Taskscores[] = [];
-
-
+    taskScores: Taskscores[] = [];
+    response:any
+    search!:string
+    showTable=true
+    searchedTasks:any
     
   constructor(private loginService: LoginServiceService,private router: Router) { }
   
@@ -41,12 +42,30 @@ import { Taskscores } from '../class/taskscores';
     }
 
 
+  onSearch() {
+      console.log("Hello");
+      if(this.search==null){
+        this.showTable=true
+      }
+      const searchValue = this.search.toString().split(' '); 
+
+      const filteredTasks = this.tasks.filter((task: { taskID: number }) =>
+      searchValue.some(value => task.taskID.toString().includes(value))
+      );
+      // ReversedFilterdTasks
+      this.searchedTasks = filteredTasks
+      console.log(this.searchedTasks);
+      this.showTable=false
+    }
+
+
   onDelete(taskID: number) { this.loginService.deleteTask(taskID).subscribe((res) =>
-      { 
+    { 
     console.log("delete");
     this.getTasks();
     });        
     }
+
 
   getTasks(): void {
       this.loginService.getTasks().subscribe((res) => {
@@ -55,6 +74,7 @@ import { Taskscores } from '../class/taskscores';
       })
     }
   
+
   addTask(): void {
       console.log(this.userID);
       this.newTask.taskID=this.taskID
@@ -64,12 +84,9 @@ import { Taskscores } from '../class/taskscores';
       this.newTask.description=this.description
       this.newTask.dueDate=this.dueDate
       this.newTask.userID = { userID: this.userID }
-      console.log(this.newTask.userID.userID);
-      // this.newTask.workID=this.workID
       
       console.log(this.newTask);
       this.loginService.addTask(this.newTask).subscribe((task: Task) => {
-        console.log("Hello");
         this.tasks.push(task);
         console.log(task);
         this.newTask = new Task();
@@ -77,48 +94,28 @@ import { Taskscores } from '../class/taskscores';
       });
     }
 
-    tasksPriority(){
 
-      
-      for (let i = 0; i < this.tasks.length; i++) {
-        console.log(this.tasks.length);
-        let taskID = this.tasks[i].taskID;
-        this.loginService.sort(taskID).subscribe((score)=>{
-          console.log(score);
-          let taskScore: Taskscores = {
-            taskID: this.tasks[i].taskID,
-            title: this.tasks[i].title,
-            status: this.tasks[i].status,
-            priority: this.tasks[i].priority,
-            dueDate: this.tasks[i].dueDate,
-            description: this.tasks[i].description,
-            workID: this.tasks[i].workID,
-            userID: this.tasks[i].userID,
-            score: score
-          };
-          console.log(score);
-          this.taskScores.push(taskScore);
-
-          this.scores.push(score)
-
-          
-        
-         
-        })
-
-      }
-      console.log(this.taskScores);
-      // console.log(this.scores);
-      // this.taskScores.sort((a: { score: number; }, b: { score: number; }) => b.score - a.score);
-      // console.log(this.taskScores);
-      // if(this.taskScores[0].score>this.taskScores[1].score){
-      //   console.log("hi");
-      // }
-      console.log(this.taskScores[3]); // Output: number
-
-      
-    }
+  tasksPriority(){
+      this.loginService.sort(777).subscribe((res)=>{
+        console.log(res);
+        this.response=res
+        this.response.sort((a: { score: number; }, b: { score: number; }) => b.score - a.score);
+        console.log(this.response);
+        let i=0
+        while(i<this.tasks.length){
+          this.tasks[i].taskID=this.response[i].taskID
+          this.tasks[i].title=this.response[i].title
+          this.tasks[i].status=this.response[i].status
+          this.tasks[i].priority=this.response[i].priority
+          this.tasks[i].dueDate=this.response[i].dueDate
+          this.tasks[i].description=this.response[i].description
+          this.tasks[i].userID.userID=this.response[i].userID
+          i++
+        }
+      })    
+  }
   
+
   updateStatus(taskId: number,status:string): void {
       this.loginService.updateStatus(taskId,status).subscribe(
         () => {
@@ -128,10 +125,15 @@ import { Taskscores } from '../class/taskscores';
           console.error('Error updating task status:', error);
         }
       );
-    }
+  }
+
 
   filter(){
       this.tasks.sort((a: { priority: number; }, b: { priority: number; }) => a.priority - b.priority);
       console.log(this.tasks);
-    }
+  }
+
+  onclick(){
+    this.router.navigate(["/User"])
+  }
   }
