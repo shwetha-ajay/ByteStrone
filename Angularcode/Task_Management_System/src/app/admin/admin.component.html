@@ -69,7 +69,7 @@
       <button (click)="updateStatus(task.taskID,task.status)">Update</button>
       </td>
       <td>{{ task.priority }}</td>
-      <td>{{task.userID?.userID}}</td> 
+      <td>{{task.userID.userID}}</td> 
       <td><button type="submit" (click) ="onDelete(task.taskID)">Delete</button></td>
     </tr>
   </tbody>

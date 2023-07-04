@@ -42,8 +42,8 @@ export class LoginServiceService {
     return this.http.get<number>(`http://localhost:8080/priorityscore/${taskID}`)
   }
  
-    public login(login:Login){
-      return this.http.post(this.url,login)
+    public login(data:any){
+      return this.http.post(this.url,data)
     }
 
     public getuserId(email:String){

@@ -100,19 +100,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr >
-        <td>{{ users.taskID }}</td>
-        <td>{{ users.title }}</td>
-        <td>{{ users.description }}</td>
-        <td>{{ users.dueDate }}</td>
+        <tr *ngFor="let user of users">
+        <td>{{ user.taskID }}</td>
+        <td>{{ user.title }}</td>
+        <td>{{ user.description }}</td>
+        <td>{{ user.dueDate }}</td>
         <td>    
         <select [(ngModel)]="users.status" > 
             <option value="In progress" >In Progress</option>
             <option value="Completed">Completed</option>
             <option value="Deferred">Deferred</option>
         </select>
-        <button (click)="updateStatus(users.taskID,users.status)">update</button></td>
-        <td>{{ users.priority }}</td>   
+        <button (click)="updateStatus(user.taskID,user.status)">update</button></td>
+        <td>{{ user.priority }}</td>   
         </tr>
     </tbody>
 </table>

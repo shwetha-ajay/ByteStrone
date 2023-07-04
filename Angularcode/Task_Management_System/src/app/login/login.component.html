@@ -3,12 +3,29 @@
         <h4></h4>
         <div class="form">
          
-          <form class="login-form">
-            <input type="text"  name="email" [(ngModel)]="email" placeholder="User Email">
-            <input type="password"name="password" [(ngModel)]="password" placeholder="Password">
+          <form class="login-form" [formGroup]="loginForm" (ngSubmit)="doLogin()">
+            <input type="text"  name="email" formControlName="email" placeholder="User Email">
             
-            <input type="text" name="userRole" [(ngModel)]="role" placeholder="Role ">
-            <button type="submit" (click)="doLogin()" >login</button>          
+          <div class="valid" *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">
+
+            Email is invalid.
+            </div>
+                        
+            <input type="password"name="password" formControlName="password" placeholder="Password">
+            <div class="valid" *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+
+              Password is invalid.
+  
+            </div>
+            
+            <input type="text" name="userRole" formControlName="role" placeholder="Role">
+            
+          <div class="valid" *ngIf="loginForm.controls.role.invalid && loginForm.controls.role.touched">
+
+            Role is invalid.
+
+          </div>
+            <button type="submit" >login</button>          
           </form>
         </div>
     </div>

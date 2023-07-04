@@ -10,19 +10,21 @@ import { Router } from '@angular/router';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent  {
+export class UserComponent implements OnInit {
+  user:any
   email!:String;
   users:any
   userID!:any
   tasks!:any
   admin=false
+
   //loginService: any;
 
 constructor(private service:LoginServiceService,private router:Router){}
 
 ngOnInit(): void {
     if(this.service.getRole()=="Admin"){
-      console.log("sss");
+     // console.log("sss");
        this.admin=true
     }
 
@@ -33,6 +35,7 @@ ngOnInit(): void {
       this.userID=res
       // console.log(res);
       this.service.userTasks(this.userID).subscribe((res)=>{
+        console.log("hello");
       this.users=res
       console.log(res);
     })
