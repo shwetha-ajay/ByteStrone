@@ -1,5 +1,6 @@
 package com.bytes.service;
 
+import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.bytes.repo.TaskRepository;
@@ -80,6 +82,13 @@ public class TaskServiceImpl implements TaskService {
 	 public List<Task> getTasksByUserId(int userId) {
        return taskRepository.findByUserID_UserID( userId);
 	}
+
+//   pagination	
+//	 @Override
+//	    public Page<Task> getPaginatedTasks(Pageable pageable) {
+//	        return taskRepository.findAll(pageable);
+//	 }
+	
 	
 	
 //  priority calculation

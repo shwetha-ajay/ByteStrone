@@ -20,5 +20,7 @@ public interface TaskService {
 	List<Task> getTasksByUserId(int userId);
 
 	List<Task> calculatePriorityScore(List<Task> task);
+	
+	// Page<Task> getPaginatedTasks(Pageable pageable);
 
 }
