@@ -12,8 +12,6 @@ public class LoginServiceImpl implements LoginService {
 	LoginRepository loginRepository;
 
 //	@Override
-//	public void addLoginDetails(Login login) {
-//		LoginRepository.save(login);
 
 	public ResponseEntity<Login> loginDetails(Login login) {
 		System.out.println("checkk");

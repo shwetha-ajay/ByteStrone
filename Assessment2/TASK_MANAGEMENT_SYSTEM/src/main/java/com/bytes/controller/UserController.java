@@ -1,5 +1,7 @@
 package com.bytes.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,5 +36,11 @@ public class UserController {
 		int userId = userService.getUserIdByEmail(email);
 		return ResponseEntity.ok(userId);
 	}
+	
+//  list all userIds
+    @GetMapping("/ids")
+    public List<Integer> getUserIds() {
+        return userService.getUserIds();
+    }
 
 }
