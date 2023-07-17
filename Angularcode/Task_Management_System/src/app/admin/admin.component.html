@@ -1,4 +1,6 @@
 
+
+
 <div class="header"> 
   <a href="/dashboard" (click)="onclick()" class="previous round">&#8249;</a> 
   <h1 class="centered-title">Tasks To Do</h1> 
@@ -28,7 +30,12 @@
       <option value="deferred">Deferred</option>
     </select>
     <input type="number" placeholder="Priority" name="priority" [(ngModel)]="priority" required>
-    <input type="number" placeholder="Assigned To(userId)" name="assignedto" [(ngModel)]="userID" required>
+    <!-- <input type="number" placeholder="Assigned To(userId)" name="assignedto" [(ngModel)]="userID" required> -->
+    <select class="userId"name="assignedto" [(ngModel)]="userID" required >
+      <option value="" disabled selected>Select Assigned To</option>
+      <option *ngFor="let id of userIds" [value]="id">{{ id }}</option>
+    </select> 
+
     <button type="submit" class="add" (click)="addTask()">Add Task</button>
   </form>
   </div>
@@ -104,9 +111,11 @@
       <button (click)="updateStatus(task.taskID,task.status)">update</button>
       </td>
       <td>{{ task.priority }}</td>
-      <td>{{task.userID?.userID}}</td> 
+      <td>{{task.userID.userID}}</td> 
       <td><button type="submit" (click) ="onDelete(task.taskID)">Delete</button></td>      
     </tr>
   </tbody>
 </table>
+
+
 

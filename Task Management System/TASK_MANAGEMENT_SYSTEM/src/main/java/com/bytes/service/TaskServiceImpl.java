@@ -1,16 +1,19 @@
 package com.bytes.service;
 
+import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
 import com.bytes.repo.TaskRepository;
-import com.bytes.utils.ReturnTasksWithScore;
 import com.bytes.utils.Task;
+
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -76,26 +79,25 @@ public class TaskServiceImpl implements TaskService {
 	
 //   fetch task by userid		  
 	@Override
-	public ResponseEntity<Task> getTaskByUserId(int userId) {
-		List<Task> tasklist = taskRepository.findAll();
-		for (Task task : tasklist) {
-			if (task.getUserID().getUserID() == userId) {
-				return ResponseEntity.ok(task);
-			}
-		}
-		return ResponseEntity.notFound().build();
+	 public List<Task> getTasksByUserId(int userId) {
+       return taskRepository.findByUserID_UserID( userId);
 	}
 
+//   pagination	
+//	 @Override
+//	    public Page<Task> getPaginatedTasks(Pageable pageable) {
+//	        return taskRepository.findAll(pageable);
+//	 }
+	
+	
 	
 //  priority calculation
 	private static final double WEIGHTAGE_DUE_DATE = 0.3;
-	// private static final double WEIGHTAGE_PRIORITY = 0.1;
 	private static final double WEIGHTAGE_STATUS = 0.7;
 
 	@Override
-	public List<ReturnTasksWithScore> calculatePriorityScore(List<Task> task) {
-		List<ReturnTasksWithScore> tasks = new ArrayList<ReturnTasksWithScore>();
-		int i = 0;
+	public List<Task> calculatePriorityScore(List<Task> task) {
+		List<Task> tasks = new ArrayList<>();
 		for (Task task1 : task) {
 
 			double normalizedDueDate = calculateNormalizedDueDate(task1.getDueDate());
@@ -105,15 +107,12 @@ public class TaskServiceImpl implements TaskService {
 			// Calculate the priority score
 			double priorityScore = (normalizedDueDate * WEIGHTAGE_DUE_DATE) + (normalizedStatus * WEIGHTAGE_STATUS);
 
-			ReturnTasksWithScore scored123 = new ReturnTasksWithScore(task1.getTaskID(), task1.getTitle(),
-					task1.getDescription(), task1.getDueDate(), task1.getPriority(), task1.getStatus(), priorityScore,
-					task1.getUserID().getUserID(), task1.getWorkID().getWorkID());
-
-			tasks.add(scored123);
-
+     		//Task scored123=new Task();
+			task1.setScore(priorityScore);
+		    tasks.add(task1);
 		}
 		return tasks;
-
+		
 	}
 
 	// Define a method to calculate the normalized due date
@@ -136,6 +135,6 @@ public class TaskServiceImpl implements TaskService {
 		} else {
 			return 1;
 		}
-
+		
 	}
 }

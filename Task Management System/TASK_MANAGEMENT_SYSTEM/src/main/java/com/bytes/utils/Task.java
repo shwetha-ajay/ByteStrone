@@ -23,13 +23,14 @@ public class Task {
 	@ManyToOne
 	@JoinColumn(name = "workID")
 	private Work workID;
+	private Double score;
 
 	public Task() {
 
 	}
 
 	public Task(int taskID, String title, String description, int priority, String status, User userID,
-			LocalDate dueDate, Work workID) {
+			LocalDate dueDate, Work workID,double score) {
 		super();
 		this.taskID = taskID;
 		this.title = title;
@@ -39,6 +40,7 @@ public class Task {
 		this.userID = userID;
 		this.dueDate = dueDate;
 		this.workID = workID;
+		this.score=score;
 	}
 
 	public int getTaskID() {
@@ -104,5 +106,13 @@ public class Task {
 	public void setDueDate(LocalDate dueDate) {
 		this.dueDate = dueDate;
 	}
+	
+    public Double getScore() {
+    	return score;
+    }
+    
+    public void setScore(Double score) {
+    	this.score=score;
+    }
 
 }

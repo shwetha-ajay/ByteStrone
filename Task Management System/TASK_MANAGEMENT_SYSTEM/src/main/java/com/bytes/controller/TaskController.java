@@ -1,7 +1,13 @@
 package com.bytes.controller;
 
+import java.awt.print.Pageable;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,21 +16,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.bytes.service.TaskServiceImpl;
-import com.bytes.service.UserServiceImpl;
-import com.bytes.utils.ReturnTasksWithScore;
 import com.bytes.utils.Task;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-//@RequestMapping("/taskmain")
 public class TaskController {
 
 	@Autowired
-//	TaskRepository taskRepository;
 	private TaskServiceImpl taskService;
-	private UserServiceImpl userService;
 
 //	create task	
 	@PostMapping("/task")
@@ -46,12 +49,7 @@ public class TaskController {
 		return ResponseEntity.ok(200);
 	}
 
-//  update status
-//	@PutMapping("/status/{taskID}")
-//	public Task updateTaskStatus(@PathVariable int taskID, @RequestBody Task task) {
-//		return taskService.updateTaskStatus(taskID, task);
-//	}
-
+//  update status of task
 	@PostMapping("/updatestatus")
 	public String updateTaskStatus(@RequestBody Object task) {
 		taskService.updateTaskStatus(task);
@@ -66,26 +64,44 @@ public class TaskController {
 
 //  display task by id
 	@GetMapping("searchBytask/{taskId}")
-	public ResponseEntity<Task> getTaskById(@PathVariable int taskId) {
+	public ResponseEntity<?> getTaskById(@PathVariable int taskId) {
 		Task task = taskService.getTaskById(taskId);
 		if (task != null) {
 			return ResponseEntity.ok(task);
 		} else {
-			return ResponseEntity.notFound().build();
+			 return ResponseEntity.status(HttpStatus.NOT_FOUND)
+			            .body("Task with ID " + taskId + " does not exist");
 		}
 	}
 
 //  display task by userid
 	@GetMapping("searchByuser/{userId}")
-	public ResponseEntity<Task> getTaskByUserId(@PathVariable int userId) {
-		return taskService.getTaskByUserId(userId);
+	public ResponseEntity<?> getTaskByUserId(@PathVariable int userId) {
+	    List<Task> tasks = taskService.getTasksByUserId(userId);
+	    if (!tasks.isEmpty()) {
+	        return ResponseEntity.ok(tasks);
+	    } else {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+	            .body("Task with userID " + userId + " does not exist");
+	    }
 	}
-
+	
 //  automatic priority calculation
 	@GetMapping("/priorityscore/{taskId}")
-	public List<ReturnTasksWithScore> getTaskPriority(@PathVariable int taskId) {
+	public List<Task> getTaskPriority(@PathVariable int taskId) {
 		List<Task> task = taskService.getAllTasks();
 		return taskService.calculatePriorityScore(task);
 	}
-
+	
+//	@GetMapping("/pagin")
+//	public ResponseEntity<Page<Task>> getPaginatedTasks(
+//	    @RequestParam(defaultValue = "0") int page,
+//	    @RequestParam(defaultValue = "10") int pageSize,
+//	    @RequestParam(defaultValue = "id") String sortBy
+//	) {
+//	    Pageable pageable = PageRequest.of(page, pageSize, Sort.by(sortBy));
+//	    Page<Task> taskPage = taskService.getPaginatedTasks(pageable);
+//	    return ResponseEntity.ok(taskPage);
+//	}
+//	
 }

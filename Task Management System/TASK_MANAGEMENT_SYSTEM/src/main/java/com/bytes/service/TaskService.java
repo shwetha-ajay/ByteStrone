@@ -2,9 +2,6 @@ package com.bytes.service;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-
-import com.bytes.utils.ReturnTasksWithScore;
 import com.bytes.utils.Task;
 
 public interface TaskService {
@@ -19,8 +16,11 @@ public interface TaskService {
 
 	Task getTaskById(int taskId);
 
-	ResponseEntity<Task> getTaskByUserId(int userId);
 
-	List<ReturnTasksWithScore> calculatePriorityScore(List<Task> task);
+	List<Task> getTasksByUserId(int userId);
+
+	List<Task> calculatePriorityScore(List<Task> task);
+	
+	// Page<Task> getPaginatedTasks(Pageable pageable);
 
 }

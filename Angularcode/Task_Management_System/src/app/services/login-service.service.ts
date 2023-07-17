@@ -35,6 +35,7 @@ export class LoginServiceService {
  api3="http://localhost:8080/viewAdmin"
  deletetask="http://localhost:8080/deleteTask"
  userTaskDetails="http://localhost:8080/searchByuser"
+ getIds="http://localhost:8080/ids"
 
 
   constructor(private http:HttpClient) {}
@@ -56,6 +57,10 @@ export class LoginServiceService {
 
     public addAdmin(user:Login){
       return this.http.post(this.url,user)
+    }
+
+    public getUserIds(): Observable<number[]> {
+      return this.http.get<number[]>(`${this.getIds}`);
     }
 
     public addTask(task: Task): Observable<Task> {

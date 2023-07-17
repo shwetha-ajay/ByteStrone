@@ -2,15 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="assets/css/styles.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <title>Dashboard</title>
-</head>
-
 <body>
     <section class="header">
         <div class="logo">
@@ -18,10 +9,6 @@
             <h2>To<span>Do</span></h2>
         </div>
         <div class="search--notification--profile">
-            <div class="search">
-                <input type="text" placeholder="Search Scdule..">
-                <button><i class="ri-search-2-line"></i></button>
-            </div>
             <div class="notification--profile">
             </div>
         </div>
@@ -42,10 +29,10 @@
                     </a>
                 </li>
                 <li>
-                    <a >
+                    <!-- <a >
                         <span class="icon icon-3"><i class="ri-user-2-line"></i></span>
                         <span class="sidebar--item" style="white-space: nowrap;">Works</span>
-                    </a>
+                    </a> -->
                 </li>
                 <li>
                     <a href="/Admin" click *ngIf="admin">
@@ -110,7 +97,7 @@
             <option value="In progress" >In Progress</option>
             <option value="Completed">Completed</option>
             <option value="Deferred">Deferred</option>
-        </select>
+        </select>&nbsp;
         <button (click)="updateStatus(user.taskID,user.status)">update</button></td>
         <td>{{ user.priority }}</td>   
         </tr>

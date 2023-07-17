@@ -34,16 +34,17 @@ import { Taskscores } from '../class/taskscores';
     search!:string
     showTable=true
     searchedTasks:any
+    userIds: number[] = []; 
     
   constructor(private loginService: LoginServiceService,private router: Router) { }
   
   ngOnInit(): void {
       this.getTasks();
+      this.fetchUserIds()
     }
 
-
   onSearch() {
-      console.log("Hello");
+      // console.log("Hello");
       if(this.search==null){
         this.showTable=true
       }
@@ -58,7 +59,6 @@ import { Taskscores } from '../class/taskscores';
       this.showTable=false
     }
 
-
   onDelete(taskID: number) { this.loginService.deleteTask(taskID).subscribe((res) =>
     { 
     console.log("delete");
@@ -66,15 +66,24 @@ import { Taskscores } from '../class/taskscores';
     });        
     }
 
-
   getTasks(): void {
       this.loginService.getTasks().subscribe((res) => {
         this.tasks = res;
         console.log(this.tasks);
       })
     }
+// list userids
+  fetchUserIds(): void {
+      this.loginService.getUserIds().subscribe(
+        (userIds: number[]) => {
+          this.userIds = userIds;
+        },
+        (error: any) => {
+          console.log('Error fetching user IDs:', error);
+        }
+      );
+    }
   
-
   addTask(): void {
       console.log(this.userID);
       this.newTask.taskID=this.taskID
@@ -90,10 +99,9 @@ import { Taskscores } from '../class/taskscores';
         this.tasks.push(task);
         console.log(task);
         this.newTask = new Task();
-        this.getTasks()
+        this.getTasks();
       });
     }
-
 
   tasksPriority(){
       this.loginService.sort(777).subscribe((res)=>{
@@ -109,7 +117,7 @@ import { Taskscores } from '../class/taskscores';
           this.tasks[i].priority=this.response[i].priority
           this.tasks[i].dueDate=this.response[i].dueDate
           this.tasks[i].description=this.response[i].description
-          this.tasks[i].userID.userID=this.response[i].userID
+          this.tasks[i].userID.userID=this.response[i].userID.userID
           i++
         }
       })    

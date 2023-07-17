@@ -25,15 +25,6 @@ export class LoginComponent  {
 
 constructor( private loginservice: LoginServiceService,private router:Router) { 
 }
-// ngOnInit(): void {
-//   this.loginForm = this.formBuilder.group({
-//     email: ['', [Validators.required, Validators.email]],
-//     password: ['', Validators.required],
-//     role: ['', Validators.required]
-//   });
-// }
-
-
 
   // Function to handle login
 doLogin(){
@@ -53,8 +44,7 @@ doLogin(){
         this.router.navigate(["/dashboard"])
       }
       if(this.response.roleName=="Admin"){
-        this.router.navigate(["/user"])
-        
+        this.router.navigate(["/user"])        
       }
       if(this.response.roleName=="User"){
         this.router.navigate(["/user"])

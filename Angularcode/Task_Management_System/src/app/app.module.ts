@@ -10,7 +10,10 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ReportComponent } from './report/report.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminDashboardComponent,
     UserComponent,
     HomeComponent,
+    ReportComponent,
+    AddTaskComponent,
   
   ],
   imports: [
@@ -27,7 +32,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

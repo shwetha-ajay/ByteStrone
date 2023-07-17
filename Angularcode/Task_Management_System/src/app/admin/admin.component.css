@@ -76,6 +76,7 @@ h1 {
 
   input{
     margin-left: 0.2rem;
+
   }
 
   .add{
@@ -120,3 +121,19 @@ h1 {
     background-color: #1c3143;
     transform: scale(0.95);
   }
+
+  .userId{
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  
+  }
+
+
+

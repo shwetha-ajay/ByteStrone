@@ -6,6 +6,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './Authguard/auth.guard';
+import { ReportComponent } from './report/report.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 const routes: Routes = [
   {path:"",redirectTo: "login",pathMatch:"full"},
@@ -14,7 +16,10 @@ const routes: Routes = [
   {path:"Admin",component:AdminComponent},
 
   {path:"user",component:UserComponent,canActivate: [AuthGuard],data: { expectedRole: 'User' }},
-  {path:"home",component:HomeComponent}
+  {path:"home",component:HomeComponent},
+  {path:"report",component:ReportComponent},
+  {path:"addTask",component:AddTaskComponent},
+
 ];
 
 @NgModule({

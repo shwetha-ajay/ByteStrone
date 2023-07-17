@@ -16,4 +16,6 @@ public interface UserService {
 
 	public int getUserIdByEmail(String email);
 
+	public List<Integer> getUserIds();
+
 }
