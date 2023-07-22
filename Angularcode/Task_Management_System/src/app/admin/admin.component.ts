@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginServiceService } from '../services/login-service.service';
+import { TmsServiceService } from '../services/tms-service.service';
 import { Login } from '../models/login';
 import { HttpClient } from '@angular/common/http';
 import { Task } from '../class/task';
@@ -21,12 +21,13 @@ import { Taskscores } from '../class/taskscores';
     tasks:any
     newTask: Task = new Task();
     title!:string;
-    status!:string;
+    status: string = '';
     priority!:number;
     taskID!:number;
     description!:string;
     dueDate!:Date;
-    userID!:number;
+    // userID!:number;
+    userID: string='' ;
     workID!:number;
     scores: number[] = [];
     taskScores: Taskscores[] = [];
@@ -36,7 +37,7 @@ import { Taskscores } from '../class/taskscores';
     searchedTasks:any
     userIds: number[] = []; 
     
-  constructor(private loginService: LoginServiceService,private router: Router) { }
+  constructor(private loginService: TmsServiceService,private router: Router) { }
   
   ngOnInit(): void {
       this.getTasks();
@@ -76,6 +77,7 @@ import { Taskscores } from '../class/taskscores';
   fetchUserIds(): void {
       this.loginService.getUserIds().subscribe(
         (userIds: number[]) => {
+          console.log(userIds);
           this.userIds = userIds;
         },
         (error: any) => {
@@ -92,8 +94,8 @@ import { Taskscores } from '../class/taskscores';
       this.newTask.priority=this.priority
       this.newTask.description=this.description
       this.newTask.dueDate=this.dueDate
-      this.newTask.userID = { userID: this.userID }
-      
+      // this.newTask.userID = { userID: this.userID }
+      this.newTask.userID = { userID: parseInt(this.userID ) };
       console.log(this.newTask);
       this.loginService.addTask(this.newTask).subscribe((task: Task) => {
         this.tasks.push(task);
@@ -141,7 +143,5 @@ import { Taskscores } from '../class/taskscores';
       console.log(this.tasks);
   }
 
-  onclick(){
-    this.router.navigate(["/User"])
-  }
+
   }

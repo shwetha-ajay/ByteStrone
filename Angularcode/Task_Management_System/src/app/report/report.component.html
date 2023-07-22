@@ -23,9 +23,9 @@
                     </a>
                 </li>             
                 <li>
-                    <a href="report">
+                    <a href="dashboard">
                         <span class="icon icon-3"><i class="ri-user-2-line"></i></span>
-                        <span class="sidebar--item" style="white-space: nowrap;">Report</span>
+                        <span class="sidebar--item" style="white-space: nowrap;">Users</span>
                     </a>
                 </li>
                 <li>
@@ -72,12 +72,12 @@
     <thead>
       <tr>
         <th>Status</th>
-        <th>Count</th>
+        <th>Count of Tasks</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let status of taskStatusCounts">
-        <td>{{ status.label }}</td>
+        <td>Tasks {{ status.label }}</td>
         <td>{{ status.count }}</td>
       </tr>
     </tbody>
@@ -90,12 +90,12 @@
     <thead>
       <tr>
         <th>Priority</th>
-        <th>Count</th>
+        <th>Count of Tasks</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let priority of taskPriorityCounts">
-        <td>Level {{ priority.label }}</td>
+        <td>Priority {{ priority.label }}</td>
         <td>{{ priority.count }}</td>
       </tr>
     </tbody>

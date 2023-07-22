@@ -2,7 +2,7 @@
 
 
 <div class="header"> 
-  <a href="/dashboard" (click)="onclick()" class="previous round">&#8249;</a> 
+  <a href="/dashboard"  class="previous round">&#8249;</a> 
   <h1 class="centered-title">Tasks To Do</h1> 
   <div class="search-box"> 
     <input type="number" placeholder="Search" (input)="onSearch()" [(ngModel)]="search"> 
@@ -23,18 +23,23 @@
     <input type="text" placeholder="Title" name="title" [(ngModel)]="title" required>
     <input type="text" placeholder="description" name="description" [(ngModel)]="description" required>
     <input type="date" placeholder="due Date" name="duedate" [(ngModel)]="dueDate" required>
-    <select class="status" name="status"  placeholder="Status"[(ngModel)]="status" required>
-      <option value="">Select Status</option>
-      <option value="in progress">In Progress</option>
-      <option value="completed">Completed</option>
-      <option value="deferred">Deferred</option>
+    
+    <select class="status" name="status" [(ngModel)]="status" required >
+      <option value="" disabled  selected >--Select Status--</option>
+      <option value="In progress">In Progress</option>
+      <option value="Completed">Completed</option>
+      <option value="Deferred">Deferred</option>
     </select>
-    <input type="number" placeholder="Priority" name="priority" [(ngModel)]="priority" required>
+    
+    <input type="number" placeholder="Priority" name="priority" [(ngModel)]="priority" required>&nbsp;
     <!-- <input type="number" placeholder="Assigned To(userId)" name="assignedto" [(ngModel)]="userID" required> -->
-    <select class="userId"name="assignedto" [(ngModel)]="userID" required >
-      <option value="" disabled selected>Select Assigned To</option>
+    <select class="userId"name="assignedto" [(ngModel)]="userID"  required  >
+      <option value=""disabled  selected >Select Assigned To</option>
       <option *ngFor="let id of userIds" [value]="id">{{ id }}</option>
-    </select> 
+    </select>
+
+    
+
 
     <button type="submit" class="add" (click)="addTask()">Add Task</button>
   </form>
@@ -42,8 +47,8 @@
   </div>
 </div>
 
-<button (click)="filter()">Filter by priority</button>&nbsp;&nbsp;
-<button (click)="tasksPriority()">Sort</button><br><br>
+<button (click)="filter()">Sort by priority</button>&nbsp;&nbsp;
+<button (click)="tasksPriority()">Auto Sort</button><br><br>
 
 <!-- Task Table -->
 <table *ngIf="showTable">
@@ -57,7 +62,6 @@
       <th>PRIORITY</th>
       <th>ASSIGNED TO</th>
       <th></th>
-      
       
     </tr>
   </thead>

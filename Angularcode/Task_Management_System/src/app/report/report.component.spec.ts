@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ReportComponent } from './report.component';
 
 describe('ReportComponent', () => {
@@ -8,7 +8,10 @@ describe('ReportComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ReportComponent]
+      declarations: [ReportComponent],
+      imports: [
+        HttpClientTestingModule 
+      ]
     });
     fixture = TestBed.createComponent(ReportComponent);
     component = fixture.componentInstance;
@@ -18,4 +21,9 @@ describe('ReportComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
+
+  
 });

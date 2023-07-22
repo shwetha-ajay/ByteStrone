@@ -47,7 +47,7 @@
                     
                 </li>
                 <li>
-                    <a href="#">
+                    <a (click)="logout()">
                         <span class="icon icon-8"><i class="ri-logout-box-r-line"></i></span>
                         <span class="sidebar--item">Logout</span>
                     </a>
@@ -68,18 +68,23 @@
   <form class="userform" [formGroup]="userForm" (ngSubmit)="addUser()">
   <div class="form-group">
     <label>UserID:</label>
-    <input type="number" name="userid" [(ngModel)]="userID">
+    <input type="number" name="userid" [(ngModel)]="userID" formControlName="userID">
+    <div class="valid" *ngIf="userForm.controls.userID.invalid && userForm.controls.userID.touched">
+        Invalid</div>
   </div>
   
 
   <div class="form-group">
     <label>Name:</label>
-    <input type="text" name="name" [(ngModel)]="name">
+    <input type="text" name="name" [(ngModel)]="name"formControlName="name">
+    <div class="valid" *ngIf="userForm.controls.name.invalid && userForm.controls.name.touched">
+        Invalid</div>
   </div>
+
 
   <div class="form-group">
     <label>Email:</label>
-    <input type="text" name="email" [(ngModel)]="email" formControlName="email">
+    <input type="text" name="email" [(ngModel)]="email"formControlName="email">
     <div class="valid" *ngIf="userForm.controls.email.invalid && userForm.controls.email.touched">
       Email is invalid.
     </div>
@@ -87,7 +92,7 @@
 
   <div class="form-group">
     <label>Password:</label>
-    <input type="password" name="password" [(ngModel)]="password">
+    <input type="password" name="password" [(ngModel)]="password"formControlName="password">
   </div>
 <div class="addUser">
     <button class="btn" type="submit">Add User</button>
@@ -123,8 +128,7 @@
     </pagination-controls></div>
     </div>
     </div>
-    </section>
-    
+    </section>   
     <!-- <script src="assets/js/main.js"></script> -->
 </body>
 </html>

@@ -23,10 +23,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <!-- <a href="#">
                         <span class="icon icon-2"><i class="ri-calendar-2-line"></i></span>
                         <span class="sidebar--item">Login</span>
-                    </a>
+                    </a> -->
                 </li>
                 <li>
                     <!-- <a >
@@ -52,7 +52,7 @@
                 <li>
                 </li>
                 <li>
-                    <a href="#">
+                    <a (click)="logout()">
                         <span class="icon icon-8"><i class="ri-logout-box-r-line"></i></span>
                         <span class="sidebar--item">Logout</span>
                     </a>
@@ -62,9 +62,7 @@
         <div class="main--content">
             <div class="overview">      
             </div>
-                   
-                  
-                
+             
                     
         <div class="recent--patients">
             <div class="title">
@@ -93,7 +91,7 @@
         <td>{{ user.description }}</td>
         <td>{{ user.dueDate }}</td>
         <td>    
-        <select [(ngModel)]="users.status" > 
+        <select [(ngModel)]="user.status" > 
             <option value="In progress" >In Progress</option>
             <option value="Completed">Completed</option>
             <option value="Deferred">Deferred</option>

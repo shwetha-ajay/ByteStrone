@@ -8,10 +8,11 @@ import { User } from '../class/user';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginServiceService {
+export class TmsServiceService {
 
   email!:string;
   roleName!:string;
+  static getTasks: any;
   
 
   getEmail(){
@@ -67,8 +68,8 @@ export class LoginServiceService {
       return this.http.post<Task>(`${this.apiUrl}`, task);
     }
 
-    public getTasks(): Observable<Task[]> {
-      return this.http.get<Task[]>(`${this.api}`);
+    public getTasks(): Observable<any> {
+      return this.http.get<any>(`${this.api}`);
     }
 
     public addUser(user: User): Observable<User> {
@@ -90,8 +91,8 @@ export class LoginServiceService {
     }
 
     public updateStatus(taskId:number,status:string): Observable<any> {
-      console.log(taskId);
-      console.log(status);
+    //  console.log(taskId);
+    //  console.log(status);
       const statusUpdate={
         taskId:taskId,
         status:status

@@ -13,8 +13,7 @@ const routes: Routes = [
   {path:"",redirectTo: "login",pathMatch:"full"},
   {path:"dashboard",component:AdminDashboardComponent,canActivate: [AuthGuard],data: { expectedRole: 'superadmin' }},
   {path:"login",component:LoginComponent},
-  {path:"Admin",component:AdminComponent},
-
+  { path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: { expectedRole: ['Admin', 'superadmin'] } },
   {path:"user",component:UserComponent,canActivate: [AuthGuard],data: { expectedRole: 'User' }},
   {path:"home",component:HomeComponent},
   {path:"report",component:ReportComponent},

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../models/login';
-import { LoginServiceService } from '../services/login-service.service';
+import { TmsServiceService } from '../services/tms-service.service';
 import { Router } from '@angular/router';
 import { FormBuilder,FormControl,FormGroup,Validators } from '@angular/forms';
 
@@ -23,7 +23,7 @@ export class LoginComponent  {
     role:new FormControl('',[Validators.required])
   })
 
-constructor( private loginservice: LoginServiceService,private router:Router) { 
+constructor( private loginservice: TmsServiceService,private router:Router) { 
 }
 
   // Function to handle login
@@ -32,11 +32,13 @@ doLogin(){
     this.logindetails.email=this.email
     this.logindetails.password=this.password
     this.logindetails.roleName=this.role
-    // console.log(this.logindetails)
     this.loginservice.login(this.loginForm.value).subscribe(res=>{
+      console.log(this.loginForm);
       this.response=res;
       console.log(this.response);
       // console.log(this.response.role)
+      localStorage.setItem('key', this.response.roleName);
+ 
       this.loginservice.setEmail(this.response.email)
       console.log(this.response.email);
       this.loginservice.setRole(this.response.roleName)

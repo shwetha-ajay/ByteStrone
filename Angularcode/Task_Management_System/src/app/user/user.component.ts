@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginServiceService } from '../services/login-service.service';
+import { TmsServiceService } from '../services/tms-service.service';
 
 import { Task } from '../class/task';
 import { User } from '../class/user';
@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
 
   //loginService: any;
 
-constructor(private service:LoginServiceService,private router:Router){}
+constructor(private service:TmsServiceService,private router:Router){}
 
 ngOnInit(): void {
     if(this.service.getRole()=="Admin"){
@@ -43,6 +43,11 @@ ngOnInit(): void {
     )   
  }
 
+ 
+ logout(){
+  localStorage.clear();
+  this.router.navigate(["/login"])
+}
 
   updateStatus(taskId: number,status:string): void {
     this.service.updateStatus(taskId,status).subscribe(
@@ -54,7 +59,6 @@ ngOnInit(): void {
       }
     );
   }
-
 
 }
 
