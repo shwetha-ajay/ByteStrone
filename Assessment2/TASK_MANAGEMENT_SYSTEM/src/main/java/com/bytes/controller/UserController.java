@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.bytes.service.UserService;
 import com.bytes.service.UserServiceImpl;
 import com.bytes.utils.User;
@@ -19,7 +20,7 @@ import com.bytes.utils.User;
 @RestController
 public class UserController {
 	@Autowired
-	UserService userService;
+	UserService userService;	
 	UserServiceImpl userServiceImpl;
 
 //  add new user	
@@ -42,5 +43,6 @@ public class UserController {
     public List<Integer> getUserIds() {
         return userService.getUserIds();
     }
+  
 
 }

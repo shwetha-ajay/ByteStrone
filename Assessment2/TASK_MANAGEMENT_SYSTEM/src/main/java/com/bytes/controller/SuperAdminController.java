@@ -22,7 +22,7 @@ public class SuperAdminController {
 
 	@Autowired
 	UserService userService;
-
+	
 	// add new admin
 	@PostMapping("/addAdmin")
 	public ResponseEntity<Integer> addAdmin(@RequestBody User admin) {
@@ -42,5 +42,6 @@ public class SuperAdminController {
 		userService.deleteAdmin(userId);
 		return ResponseEntity.ok(200);
 	}
+	
 
 }

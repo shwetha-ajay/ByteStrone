@@ -11,13 +11,14 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	LoginRepository loginRepository;
 
-//	@Override
+	@Override
 
 	public ResponseEntity<Login> loginDetails(Login login) {
 		System.out.println("checkk");
 		System.out.println(login.getEmail());
 		System.out.println(login.getPassword());
-		if (login.getEmail() == "shwethaknr@gmail.com" && login.getPassword() == "admin123") {
+		System.out.println(login.getRoleName());
+		if (login.getEmail().equals("shwethaknr@gmail.com") && login.getPassword().equals("admin123")) {
 			Login adminLogin = new Login();
 			adminLogin.setRoleName("superadmin");
 			return ResponseEntity.ok(adminLogin);
@@ -25,12 +26,36 @@ public class LoginServiceImpl implements LoginService {
 			Login details = loginRepository.findByEmail(login.getEmail());
 			if (details.getEmail().equals(login.getEmail()) && details.getPassword().equals(login.getPassword())) {
 				String role = details.getRoleName();
-				if (role.equals("admin") || role.equals("user")) {
+				if (role.equals("Admin") || role.equals("User")) {
 					return ResponseEntity.ok(details);
 				}
 			}
-			return ResponseEntity.ok(details);
+			return ResponseEntity.ok(login);
 
 		}
 	}
 }
+//	
+//	  @Override
+//	    public Login loginDetails(Login login) {
+//	        System.out.println("checkk");
+//	        System.out.println(login.getEmail());
+//	        System.out.println(login.getPassword());
+//	        System.out.println(login.getRoleName());
+//	        
+//	        if (login.getEmail().equals("shwethaknr@gmail.com") && login.getPassword().equals("admin123")) {
+//	            Login adminLogin = new Login();
+//	            adminLogin.setRoleName("superadmin");
+//	            return adminLogin;
+//	        } else {
+//	            Login details = loginRepository.findByEmail(login.getEmail());
+//	            if (details != null && details.getEmail().equals(login.getEmail()) && details.getPassword().equals(login.getPassword())) {
+//	                String role = details.getRoleName();
+//	                if (role.equals("Admin") || role.equals("User")) {
+//	                    return details;
+//	                }
+//	            }
+//	            return details;
+//	        }
+//	    }
+//	}

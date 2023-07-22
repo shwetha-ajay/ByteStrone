@@ -1,6 +1,5 @@
 package com.bytes.service;
 
-import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -8,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.bytes.repo.TaskRepository;
@@ -32,7 +30,7 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public List<Task> getAllTasks() {
 		return taskRepository.findAll();
-	}
+	}	
 
 //  delete task by taskid	
 	@Override
@@ -42,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
 
 //  update status of task	
 	public Task updateTaskStatus(Object task) {
-		System.out.println(task);
+//		System.out.println(task);
 		Map<String, Object> taskMap = (Map<String, Object>) task;
 		int taskId = (int) taskMap.get("taskId");
 		String status = (String) taskMap.get("status");
@@ -83,14 +81,7 @@ public class TaskServiceImpl implements TaskService {
        return taskRepository.findByUserID_UserID( userId);
 	}
 
-//   pagination	
-//	 @Override
-//	    public Page<Task> getPaginatedTasks(Pageable pageable) {
-//	        return taskRepository.findAll(pageable);
-//	 }
-	
-	
-	
+		
 //  priority calculation
 	private static final double WEIGHTAGE_DUE_DATE = 0.3;
 	private static final double WEIGHTAGE_STATUS = 0.7;

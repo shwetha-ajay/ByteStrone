@@ -12,7 +12,7 @@ import com.bytes.utils.UserRole;
 
 @RestController
 public class UserRoleController {
-	@Autowired
+	@Autowired	
 	UserRoleService userRoleService;
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -20,6 +20,6 @@ public class UserRoleController {
 	public String adderUserRole(@RequestBody UserRole role) {
 		userRoleService.addUserRole(role);
 		return "added";
-	}
+	}	
 
 }

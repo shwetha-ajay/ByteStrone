@@ -12,6 +12,15 @@ public class UserRole {
 	private int roleID;
 	@Column(name = "name")
 	private String name;
+	
+	public UserRole() {
+	}
+	
+	public UserRole(int roleID, String name) {
+		super();
+		this.roleID = roleID;
+		this.name = name;
+	}
 
 	public int getRoleID() {
 		return roleID;

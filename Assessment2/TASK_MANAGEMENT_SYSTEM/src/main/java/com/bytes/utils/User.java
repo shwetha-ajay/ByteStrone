@@ -1,5 +1,6 @@
 package com.bytes.utils;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -14,6 +15,7 @@ public class User {
 //	@Column(name="\"name\"")
 	private String name;
 //	@Column(name="\"email\"")
+	@Column(unique = true)
 	private String email;
 	private String password;
 	@ManyToOne
@@ -27,7 +29,7 @@ public class User {
 	public User(int userID, String name, String email, UserRole roleID) {
 		super();
 		this.userID = userID;
-		this.name = name;
+		this.name = name;	
 		this.email = email;
 		this.roleID = roleID;
 	}

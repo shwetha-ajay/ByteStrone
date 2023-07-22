@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.bytes.repo.UserRepository;
 import com.bytes.service.LoginService;
 import com.bytes.utils.Login;
@@ -17,10 +18,15 @@ public class LoginController {
 	LoginService loginService;
 	UserRepository userRepository;
 
-	@PostMapping("/login")
+	@PostMapping("/login")	
 	public ResponseEntity<Login> loginUser(@RequestBody Login login) {
 		return loginService.loginDetails(login);
-
-		// return ResponseEntity.ok(newLog);
+		
+//	@PostMapping("/login")
+//	public ResponseEntity<Login> loginUser(@RequestBody Login login) {
+//		loginService.loginDetails(login);
+//		return ResponseEntity.ok(login);
+//
+//		
 	}
 }

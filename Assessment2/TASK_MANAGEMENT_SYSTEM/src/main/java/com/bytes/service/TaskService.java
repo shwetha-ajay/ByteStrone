@@ -21,6 +21,5 @@ public interface TaskService {
 
 	List<Task> calculatePriorityScore(List<Task> task);
 	
-	// Page<Task> getPaginatedTasks(Pageable pageable);
 
 }
