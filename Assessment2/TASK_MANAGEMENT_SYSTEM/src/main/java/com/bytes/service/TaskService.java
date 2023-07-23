@@ -22,6 +22,8 @@ public interface TaskService {
 	List<Task> calculatePriorityScore(List<Task> task);
 
 	void deleteTaskByUserID(int userId);
+
+	Task updateTaskStatus(Object task);
 	
 
 }

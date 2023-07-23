@@ -25,6 +25,7 @@ import com.bytes.utils.Work;
 //import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 
+
 @SpringBootTest(classes = TaskManagementSystemApplication.class)
 public class TaskServiceImplTests {
 
@@ -53,6 +54,7 @@ public class TaskServiceImplTests {
 		assertEquals(2, taskService.getAllTasks().size());
 	}
 
+	
 	@Test
 	void getTasksByUserId() {
 		int userId = 123;
@@ -70,6 +72,7 @@ public class TaskServiceImplTests {
 
 	}
 
+	
 	@Test
 	public void deleteTaskById() {
 		int taskId = 123;
@@ -81,6 +84,7 @@ public class TaskServiceImplTests {
 		// correct taskId
 		Mockito.verify(taskRepository).deleteById(taskId);
 	}
+	
 	
 	@Test
 	public void updateTaskPriority(){
@@ -98,9 +102,10 @@ public class TaskServiceImplTests {
     assertEquals(updatedTask, result);
     }
 	
+	
 	@Test
 	void testUpdateTaskPriority_TaskNotFound() {
-	    int taskID = 1; // Use a non-existing taskID for the test
+	    int taskID = 2; // Use a non-existing taskID for the test
 
 	    // Mock the taskRepository to return an empty Optional (indicating the task was not found)
 	    Mockito.when(taskRepository.findById(taskID)).thenReturn(Optional.empty());
@@ -115,8 +120,7 @@ public class TaskServiceImplTests {
 	    });
 	}
 	
-	
-	
+		
 	
 	 @Test
 	    void testAddtaskDetails() {
@@ -127,7 +131,6 @@ public class TaskServiceImplTests {
 	        task.setDescription("This is a sample task description.");
 	        task.setPriority(1);
 	        task.setStatus("In Progress");
-	        // Set other properties if necessary...
 
 	        // Mock the taskRepository's save method
 	        Mockito.when(taskRepository.save(task)).thenReturn(task);
@@ -137,36 +140,66 @@ public class TaskServiceImplTests {
 
 	        // Verify that the taskRepository's save method was called with the correct Task object
 	        Mockito.verify(taskRepository, times(1)).save(task);
-//			assertEquals(1, taskService.addtaskDetails(task));
 
-//			assertEquals(dummyTasks, result);
-
-}
-}
-//	void addtaskDetails(Task tasks) {
-//		int taskID=123;
-//	    String title= "Design product";
-//		 String description= "Ideas on designing product";
-//		 LocalDate dueDate=LocalDate.parse("2023-06-09");
-//		 int priority=3;
-//		 String status="Completed";
-//		 User userID=4004;	
-//		 Work workID=8000;
-//		 
-//		 taskService.addtaskDetails(tasks );
-//	     Mockito.verify(taskService).addtaskDetails(tasks);
-
-//		
-//		
-//		Task task = new Task();
-//        task.setTitle("Design product");
-//        task.setDescription("Ideas on designing product");
-//        task.setDueDate(LocalDate.parse("2023-06-09"));
-//        task.setPriority(3);
-//        task.setStatus("Completed");
-//  //    task.setUserID(4004);
-//  //    task.setWorkID(8000);
-//        taskService.addtaskDetails(task);
+      }
+	 
+	 
+//	 
+//		@Test
+//		public void updateTaskStatus(){
+//		 int taskId = 1;
+//	    Task existingTask = new Task(taskId, "Sample Task", "Description", 1, "In Progress", null, null, null, 0.0);
+//	    Task updatedTask = new Task(taskId, "Sample Task", "Description", 1, "Completed", null, null, null, 0.0);
 //
-//        // Verify the method call
-//        verify(taskRepository).save(task);
+//	    Mockito.when(taskRepository.findById(taskId)).thenReturn(Optional.of(existingTask));
+//	    Mockito.when(taskRepository.save(existingTask)).thenReturn(updatedTask);
+//
+//	    // Act
+//	    Task result = taskService.updateTaskStatus(existingTask);
+//
+//	    // Assert
+//	    assertEquals(updatedTask, result);
+//	    }
+		
+		 @Test
+		    void testUpdateTaskStatus_TaskExists() {
+		        // Create a dummy task object as input
+		        Task task = new Task();
+		        task.setTaskID(1);
+		        task.setStatus("Completed");
+
+		        Object objectTask=task;
+		        // Mock the taskRepository's findById method to return the dummy task
+		        Mockito.when(taskRepository.findById(1)).thenReturn(Optional.of(task));
+
+		        // Call the method
+		        Task result = taskService.updateTaskStatus(objectTask);
+
+		        // Verify that the taskRepository's save method was called with the correct Task object
+		        Mockito.verify(taskRepository, times(1)).save(task);
+
+		        // Check the result returned by the method
+		        assertEquals("Completed", result.getStatus());
+		    }
+	 
+	 
+
+
+	    @Test
+	    void testUpdateTaskStatus_TaskNotFound() {
+	        // Create a dummy task object as input
+	        Task task = new Task();
+	        task.setTaskID(1);
+	        task.setStatus("Completed");
+
+	        // Mock the taskRepository's findById method to return an empty Optional
+	        Mockito.when(taskRepository.findById(1)).thenReturn(Optional.empty());
+
+	        // Call the method and verify that it throws EntityNotFoundException
+	        assertThrows(EntityNotFoundException.class, () -> {
+	            taskService.updateTaskStatus(task);
+	        });
+	    }
+}
+
+//
