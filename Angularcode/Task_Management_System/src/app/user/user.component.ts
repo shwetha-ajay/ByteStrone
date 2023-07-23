@@ -18,13 +18,11 @@ export class UserComponent implements OnInit {
   tasks!:any
   admin=false
 
-  //loginService: any;
 
 constructor(private service:TmsServiceService,private router:Router){}
 
 ngOnInit(): void {
     if(this.service.getRole()=="Admin"){
-     // console.log("sss");
        this.admin=true
     }
 
@@ -35,21 +33,18 @@ ngOnInit(): void {
       this.userID=res
       // console.log(res);
       this.service.userTasks(this.userID).subscribe((res)=>{
-        // console.log("hello");
       this.users=res
       console.log(res);
     })
-    }
-    )   
- }
-
+    })   
+}
  
- logout(){
-  localStorage.clear();
-  this.router.navigate(["/login"])
+logout(){
+   localStorage.clear();
+   this.router.navigate(["/login"])
 }
 
-  updateStatus(taskId: number,status:string): void {
+updateStatus(taskId: number,status:string): void {
     this.service.updateStatus(taskId,status).subscribe(
       () => {
         console.log('Task status updated successfully.');
@@ -59,7 +54,6 @@ ngOnInit(): void {
       }
     );
   }
-
 }
 
 

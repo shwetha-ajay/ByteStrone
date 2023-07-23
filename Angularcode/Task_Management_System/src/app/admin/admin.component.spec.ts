@@ -12,14 +12,9 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 describe('AdminComponent', () => {
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
-
-
   let service: TmsServiceService;
-  
-    let httpMock: HttpTestingController;
-  
-  
-  
+  let httpMock: HttpTestingController;
+   
   beforeEach(() => {
   
       TestBed.configureTestingModule({
@@ -30,50 +25,43 @@ describe('AdminComponent', () => {
         ]
       });
   
-      service = TestBed.inject(TmsServiceService);
-  
+      service = TestBed.inject(TmsServiceService); 
       httpMock = TestBed.inject(HttpTestingController);
   
     });
 
-    it('should be created', () => {
-      console.log("hello");
+  it('should be created', () => {
+      
       expect(service).toBeTruthy();
-    });
+ });
 
 
 
-it('should return a user result', () => {
+  it('should return a user result', () => {
 
     service.getUserIds().subscribe(result => {
 
       expect(result).toBeTruthy();
-
-      // expect(result.results).toBeTruthy();
-
-      // expect(result.results.length).toEqual(1);
     
     });
-
-
 });
 
 
-it('should fetch user IDs successfully', () => {
+  it('should fetch user IDs successfully', () => {
 
    service.getUserIds(); // This should call the mocked service method
    let user:any;
    service.getUserIds().subscribe(result => {
-   
      user=result;
      expect(user).toContain(4000);
   // const array = [4001, 4002, 4003]; // Check if the array contains the value 4001 
   // expect(array).toContain(4001); // Check if the array contains the value 4002 
   // expect(array).toContain(7010);
-   });   
-});
+    });   
+  });
 
-it('#getObservableValue should return value from observable', 
+
+  it('#getObservableValue should return value from observable', 
 
        (done: DoneFn) => { 
 

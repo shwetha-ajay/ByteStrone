@@ -76,8 +76,8 @@ export class TmsServiceService {
       return this.http.post<User>(`${this.api2}`, user);
     }
 
-    public getUsers(): Observable<User[]> {
-      return this.http.get<User[]>(`${this.api3}`);
+    public getUsers(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.api3}`);
     }
 
     public deleteTask(taskId:number) {

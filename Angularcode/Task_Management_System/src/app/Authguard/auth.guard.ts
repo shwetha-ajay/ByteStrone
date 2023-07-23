@@ -11,13 +11,10 @@ export class AuthGuard implements CanActivate {
  constructor(private loginService: TmsServiceService, private router: Router) {}
    
  
-
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    // const roleName:any=this.loginService.getRole()
     let roleName = localStorage.getItem('key');
     
-
-const expectedRole: any = route.data['expectedRole'];
+    const expectedRole: any = route.data['expectedRole'];
     console.log(expectedRole);
     console.log(roleName);
   
@@ -26,6 +23,7 @@ const expectedRole: any = route.data['expectedRole'];
       // Redirect to the 'dashboard' route or display an error message
       return true;
     }
+
     if (roleName ==='Admin' && expectedRole === 'User') {
       // User is authenticated and has the expected role, allow access to user dashboard
       return true;    
@@ -38,21 +36,19 @@ const expectedRole: any = route.data['expectedRole'];
       return true;
     }
   
-      if (roleName ==='User' && expectedRole === 'User') {
-        // User is authenticated and has the expected role, allow access to user dashboard
-        return true;
-      }
+    if (roleName ==='User' && expectedRole === 'User') {
+      // User is authenticated and has the expected role, allow access to user dashboard
+      return true;
+    }
       
-      if (roleName ==='Admin' && expectedRole === 'User') {
-        // User is authenticated and has the expected role, allow access to user dashboard
-        return true;
-      
-      }
+    if (roleName ==='Admin' && expectedRole === 'User') {
+      // User is authenticated and has the expected role, allow access to user dashboard
+      return true;  
+    }
    
-      if (roleName === 'superadmin' && expectedRole === 'superadmin') {
-        return true;
-      }
-    
+    if (roleName === 'superadmin' && expectedRole === 'superadmin') {
+      return true;
+    }   
      else { // User is not authenticated, redirect to login page 
       console.log("object");
       this.router.navigate(['/login']); 
