@@ -25,7 +25,7 @@ public class UserController {
 
 //  add new user	
 	@RequestMapping(value = "user", method = RequestMethod.POST)
-	public String adderUser(@RequestBody User user) {
+	public String adderUser(@RequestBody User user) {	
 		System.out.println("sts error");
 		userService.addUser(user);
 		return "user added";

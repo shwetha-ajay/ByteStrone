@@ -1,11 +1,14 @@
 package com.bytes.service;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -18,6 +21,9 @@ import com.bytes.repo.TaskRepository;
 import com.bytes.utils.Task;
 import com.bytes.utils.User;
 import com.bytes.utils.Work;
+
+//import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 
 @SpringBootTest(classes = TaskManagementSystemApplication.class)
 public class TaskServiceImplTests {
@@ -75,8 +81,68 @@ public class TaskServiceImplTests {
 		// correct taskId
 		Mockito.verify(taskRepository).deleteById(taskId);
 	}
-}
+	
+	@Test
+	public void updateTaskPriority(){
+	 int taskId = 1;
+    Task existingTask = new Task(taskId, "Sample Task", "Description", 1, "In Progress", null, null, null, 0.0);
+    Task updatedTask = new Task(taskId, "Sample Task", "Description", 2, "In Progress", null, null, null, 0.0);
 
+    Mockito.when(taskRepository.findById(taskId)).thenReturn(Optional.of(existingTask));
+    Mockito.when(taskRepository.save(existingTask)).thenReturn(updatedTask);
+
+    // Act
+    Task result = taskService.updateTaskPriority(taskId, updatedTask);
+
+    // Assert
+    assertEquals(updatedTask, result);
+    }
+	
+	@Test
+	void testUpdateTaskPriority_TaskNotFound() {
+	    int taskID = 1; // Use a non-existing taskID for the test
+
+	    // Mock the taskRepository to return an empty Optional (indicating the task was not found)
+	    Mockito.when(taskRepository.findById(taskID)).thenReturn(Optional.empty());
+
+	    // Create a dummy Task object to pass to the method (you can set any priority you want)
+	    Task task = new Task();
+	    task.setPriority(5);
+
+	    // Call the method and verify that it throws EntityNotFoundException
+	    assertThrows(EntityNotFoundException.class, () -> {
+	        taskService.updateTaskPriority(taskID, task);
+	    });
+	}
+	
+	
+	
+	
+	 @Test
+	    void testAddtaskDetails() {
+	        // Create a dummy Task object to pass to the method
+	        Task task = new Task();
+	        task.setTaskID(1);
+	        task.setTitle("Sample Task");
+	        task.setDescription("This is a sample task description.");
+	        task.setPriority(1);
+	        task.setStatus("In Progress");
+	        // Set other properties if necessary...
+
+	        // Mock the taskRepository's save method
+	        Mockito.when(taskRepository.save(task)).thenReturn(task);
+
+	        // Call the method
+	        taskService.addtaskDetails(task);
+
+	        // Verify that the taskRepository's save method was called with the correct Task object
+	        Mockito.verify(taskRepository, times(1)).save(task);
+//			assertEquals(1, taskService.addtaskDetails(task));
+
+//			assertEquals(dummyTasks, result);
+
+}
+}
 //	void addtaskDetails(Task tasks) {
 //		int taskID=123;
 //	    String title= "Design product";

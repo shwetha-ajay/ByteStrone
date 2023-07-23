@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bytes.repo.TaskRepository;
 import com.bytes.repo.UserRepository;
+import com.bytes.utils.Task;
 import com.bytes.utils.User;
 
 @Service
@@ -13,7 +15,8 @@ import com.bytes.utils.User;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
-//	LoginRepository loginRepository;
+	@Autowired
+	TaskRepository taskRepository;
 
 	@Override
 	public void addUser(User user) {
@@ -37,8 +40,10 @@ public class UserServiceImpl implements UserService {
 //  delete admin    
 	@Override
 	public void deleteAdmin(int userId) {
+		taskRepository.deleteTasksByUserId(userId);
 		userRepository.deleteById(userId);
-	}
+		
+	}	
 
 //  fetch userid by email    
 	public int getUserIdByEmail(String email) {

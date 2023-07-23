@@ -33,10 +33,18 @@ public class TaskServiceImpl implements TaskService {
 	}	
 
 //  delete task by taskid	
-	@Override
+	@Override	
 	public void deleteTask(int taskId) {
 		taskRepository.deleteById(taskId);
 	}
+	
+//	delete task by userid	
+	@Override	
+	public void deleteTaskByUserID(int userId) {
+		taskRepository.deleteTasksByUserId(userId);
+	}
+	
+	
 
 //  update status of task	
 	public Task updateTaskStatus(Object task) {

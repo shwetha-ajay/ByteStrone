@@ -45,7 +45,7 @@ public class Task {
 
 	public int getTaskID() {
 		return taskID;
-	}
+	}	
 
 	public void setTaskID(int taskID) {
 		this.taskID = taskID;

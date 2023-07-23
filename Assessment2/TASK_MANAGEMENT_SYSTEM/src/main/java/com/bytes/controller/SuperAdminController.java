@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bytes.service.TaskService;
 import com.bytes.service.UserService;
 import com.bytes.utils.User;
 
@@ -36,9 +37,10 @@ public class SuperAdminController {
 		return userService.getAllUsers();
 	}
 
-	// delete admin
+	// delete admin	
 	@DeleteMapping("deleteAdmin/{userId}")
 	public ResponseEntity<Integer> deleteAdmin(@PathVariable int userId) {
+	
 		userService.deleteAdmin(userId);
 		return ResponseEntity.ok(200);
 	}

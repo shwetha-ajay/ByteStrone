@@ -29,7 +29,7 @@ public class TaskController {
 	public ResponseEntity<Integer> addtaskDetails(@RequestBody Task task) {
 		taskService.addtaskDetails(task);
 		return ResponseEntity.ok(200);
-	}
+	}	
 	
 //  view tasks
 	@GetMapping("/viewTask")
@@ -61,7 +61,7 @@ public class TaskController {
 	@GetMapping("searchBytask/{taskId}")
 	public ResponseEntity<?> getTaskById(@PathVariable int taskId) {
 		Task task = taskService.getTaskById(taskId);
-		if (task != null) {
+		if (task != null) {	
 			return ResponseEntity.ok(task);
 		} else {
 			 return ResponseEntity.status(HttpStatus.NOT_FOUND)
