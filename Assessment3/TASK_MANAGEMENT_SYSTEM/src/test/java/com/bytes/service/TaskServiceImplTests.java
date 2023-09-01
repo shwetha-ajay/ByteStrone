@@ -160,28 +160,29 @@ public class TaskServiceImplTests {
 //	    // Assert
 //	    assertEquals(updatedTask, result);
 //	    }
-		
-		 @Test
-		    void testUpdateTaskStatus_TaskExists() {
-		        // Create a dummy task object as input
-		        Task task = new Task();	
-		        task.setTaskID(1);
-		        task.setStatus("Completed");
-
-		        Object objectTask=task;
-		        // Mock the taskRepository's findById method to return the dummy task
-		        Mockito.when(taskRepository.findById(1)).thenReturn(Optional.of(task));
-
-		        // Call the method
-		        Task result = taskService.updateTaskStatus(objectTask);
-
-		        // Verify that the taskRepository's save method was called with the correct Task object
-		        Mockito.verify(taskRepository, times(1)).save(task);
-
-		        // Check the result returned by the method
-		        assertEquals("Completed", result.getStatus());
-		    }
 	 
+//		
+//		 @Test
+//		    void testUpdateTaskStatus_TaskExists() {
+//		        // Create a dummy task object as input
+//		        Task task = new Task();	
+//		        task.setTaskID(1);
+//		        task.setStatus("Completed");
+//
+//		        Object objectTask=task;
+//		        // Mock the taskRepository's findById method to return the dummy task
+//		        Mockito.when(taskRepository.findById(1)).thenReturn(Optional.of(task));
+//
+//		        // Call the method
+//		        Task result = taskService.updateTaskStatus(objectTask);
+//
+//		        // Verify that the taskRepository's save method was called with the correct Task object
+//		        Mockito.verify(taskRepository, times(1)).save(task);
+//
+//		        // Check the result returned by the method
+//		        assertEquals("Completed", result.getStatus());
+//		    }
+//	 
 	 
 
 

@@ -1,6 +1,9 @@
 package com.bytes.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.times;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +41,99 @@ public class UserServiceImplTests {
 		Mockito.when(userRepository.findAll()).thenReturn(Arrays.asList(user));
 		assertEquals(1, userService.getAllUsers().size());
 	}
+
+	@Test
+	public void testGetUserIdByEmail() {
+		// Arrange
+		String testEmail = "test@example.com";
+		int expectedUserId = 123;
+
+		// Create a mock User object with the expected behavior
+		User mockUser = new User();
+		mockUser.setUserID(expectedUserId);
+
+		
+		Mockito.when(userRepository.findByEmail(testEmail)).thenReturn(mockUser);
+
+		// Act
+		int actualUserId = userService.getUserIdByEmail(testEmail);
+
+		// Assert
+		assertEquals(expectedUserId, actualUserId);
+	}
+	
+	  @Test
+	    public void testGetUserIdByEmail_UserNotFound() {
+	        // Arrange
+	        String testEmail = "nonexistent@example.com";
+
+	        // Stub the userRepository to return null when findByEmail is called with the testEmail
+	       Mockito.when(userRepository.findByEmail(testEmail)).thenReturn(null);
+
+	        // Act
+	       	        
+	        String email="nonexistent11@example";
+	        Exception exception=assertThrows(IllegalArgumentException.class,()->{
+	        	userService.getUserIdByEmail(email);
+	        });
+	        
+	        assertTrue(exception.getMessage().contains("User not found"));
+	        
+	    }
+	  
+	  
+	  @Test
+	    public void testAddUser() {
+	    
+		        // Create a dummy Task object to pass to the method
+		     User testUser = new User();
+		     testUser.setUserID(1);
+		     testUser.setName("Sample Task");
+		     testUser.setEmail("sss@gmail.com");
+		     testUser.setPassword("ss123");
+		
+	        userService.addUser(testUser);
+
+	        Mockito.verify(userRepository, times(1)).save(testUser);
+	    }
 	
 
+@Test
+public void testDeleteAdmin() {
+    // Arrange
+    int testUserId = 123;
 
+    // Act
+    userService.deleteAdmin(testUserId);
+
+    // Assert
+    Mockito.verify(userRepository, times(1)).deleteById(testUserId);
 }
+
+@Test
+public void testGetUserIds() {
+    // Arrange
+    List<Integer> expectedUserIds = Arrays.asList(1, 2, 3);
+
+    // Stub the userRepository to return the expectedUserIds when findAllUserIds is called
+    Mockito.when(userRepository.findAllUserIds()).thenReturn(expectedUserIds);
+
+    // Act
+    List<Integer> actualUserIds = userService.getUserIds();
+
+    // Assert
+    assertEquals(expectedUserIds, actualUserIds);
+}
+
+@Test
+public void testAddAdmin() {
+    // Arrange
+    User testAdmin = new User();
+ 
+    userService.addAdmin(testAdmin);
+
+    // Assert
+    Mockito.verify(userRepository, times(1)).save(testAdmin);
+}
+}
+

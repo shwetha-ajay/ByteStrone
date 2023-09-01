@@ -14,12 +14,16 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 	
 	   List<Task> findByUserID_UserID(int userID);
 	   
+	   List<Task> findByDescriptionAndPriority(String decription,int priority);
+	   
 //	   void deleteByUserID_UserID(int userID);
 //	   void deleteByUserIDId(int userId); 
-//	   void deleteByUserUserID(int userId); 
+//	   void deleteByUserUserID(int userId);
+	   
+	   
 	   @Modifying @Transactional @Query
 
-	   ("DELETE FROM Task t WHERE t.userID.userID = :userId") 
+	  ("DELETE  FROM Task t WHERE t.userID.userID = :userId") 
 	   void deleteTasksByUserId(int userId);
 }
 
