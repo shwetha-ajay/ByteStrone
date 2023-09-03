@@ -18,21 +18,30 @@
     </div>
 
   <div> 
-  <form (submit)="addTask()">
-    <input type="number" placeholder="Id" name="taskid" [(ngModel)]="taskID" required>
-    <input type="text" placeholder="Title" name="title" [(ngModel)]="title" required>
-    <input type="text" placeholder="description" name="description" [(ngModel)]="description" required>
-    <input type="date" placeholder="due Date" name="duedate" [(ngModel)]="dueDate" required>
+  <form (submit)="addTask()" [formGroup]="taskForm" class="taskForm" >
+    <div class="form-group">
+    <!-- <input type="number" placeholder="Id" name="taskid" [(ngModel)]="taskID" required> -->
     
-    <select class="status" name="status" [(ngModel)]="status" required >
+    <input type="text" placeholder="Title" name="title" [(ngModel)]="title" formControlName="title">
+    
+
+    <input type="text" placeholder="description" name="description" [(ngModel)]="description" formControlName="description">
+ 
+
+    <input type="date" placeholder="due Date" name="duedate" [(ngModel)]="dueDate" formControlName="duedate">
+    <div class="valid" *ngIf="taskForm.controls.duedate.invalid && taskForm.controls.duedate.touched">
+      Invalid </div>
+    
+    <select class="status" name="status" [(ngModel)]="status" formControlName="status" >
       <option value="" disabled  selected >--Select Status--</option>
       <option value="In progress">In Progress</option>
-      <option value="Completed">Completed</option>
       <option value="Deferred">Deferred</option>
     </select>
-    
-    <input type="number" placeholder="Priority" name="priority" [(ngModel)]="priority" required>&nbsp;
-    <!-- <input type="number" placeholder="Assigned To(userId)" name="assignedto" [(ngModel)]="userID" required> -->
+   
+    <input type="number" placeholder="Priority" name="priority" [(ngModel)]="priority" formControlName="priority">&nbsp;
+    <div class="valid" *ngIf="taskForm.controls.priority.invalid && taskForm.controls.priority.touched">
+      Invalid </div>
+  
     <select class="userId"name="assignedto" [(ngModel)]="userID"  required  >
       <option value=""disabled  selected >Select Assigned To</option>
       <option *ngFor="let id of userIds" [value]="id">{{ id }}</option>
@@ -40,18 +49,17 @@
 
     
 
-
-    <button type="submit" class="add" (click)="addTask()">Add Task</button>
+    <button type="submit" class="add" >Add Task</button></div>
   </form>
   </div>
   </div>
 </div>
-
+&nbsp;
 <button (click)="filter()">Sort by priority</button>&nbsp;&nbsp;
 <button (click)="tasksPriority()">Auto Sort</button><br><br>
 
 <!-- Task Table -->
-<table *ngIf="showTable">
+<table *ngIf="showTable"class="table table-striped table-light">
   <thead>
     <tr>
       <th>ID</th>
@@ -61,6 +69,7 @@
       <th>STATUS</th>
       <th>PRIORITY</th>
       <th>ASSIGNED TO</th>
+      <th></th>
       <th></th>
       
     </tr>
@@ -76,11 +85,12 @@
         <option value="In progress" >In Progress</option>
         <option value="Completed">Completed</option>
         <option value="Deferred">Deferred</option>
-        </select>&nbsp;
-      <button (click)="updateStatus(task.taskID,task.status)">Update</button>
+        </select>
+      
       </td>
       <td>{{ task.priority }}</td>
       <td>{{task.userID.userID}}</td> 
+      <td><button (click)="updateStatus(task.taskID,task.status)">Update</button></td>
       <td><button type="submit" (click) ="onDelete(task.taskID)">Delete</button></td>
     </tr>
   </tbody>

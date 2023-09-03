@@ -1,7 +1,8 @@
-
+ 
 h1 {
     text-align: center;
       width: 100%; 
+      
   }
   
   a {
@@ -29,10 +30,12 @@ h1 {
     padding-left: 10px;
   }
   
-  table {
-    margin-left: 3%;
-    width: 87%;
+   table {
+    margin-left: 1%;
+    width: 98%;
     border-collapse: collapse;
+    text-align: left;
+    
   }
 
   tr{
@@ -47,8 +50,8 @@ h1 {
   }
   
   th {
-    background-color: #f2f2f2;
-  }
+    background-color:white;
+  } 
 
   .status{
     margin-left: 3px ;
@@ -76,7 +79,6 @@ h1 {
 
   input{
     margin-left: 0.2rem;
-
   }
 
   .add{
@@ -95,7 +97,7 @@ h1 {
     flex-grow: 1;
     text-align: center;
     color: aliceblue;
-    font-family: 'Courier New', Courier, monospace;
+    font-family:'Times New Roman', Times, serif;
   }
   
   .search-box {
@@ -122,18 +124,24 @@ h1 {
     transform: scale(0.95);
   }
 
-  /* .userId{
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
+ /* navbar style */
 
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
+ .valid {
+  color: red;
+  margin-top: 4px;
+  font-size: 14px;
+}
+.taskform {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 1 auto;
+}
   
-  } */
-
-
-
+.form-group {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin-right: 10px;
+}

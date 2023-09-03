@@ -32,7 +32,7 @@ export class TmsServiceService {
  add="http://localhost:8080/user"
  apiUrl="http://localhost:8080/task"
  api="http://localhost:8080/viewTask"
- api2="http://localhost:8080/addAdmin"
+ api2="http://localhost:8080/addUsers"
  api3="http://localhost:8080/viewAdmin"
  deletetask="http://localhost:8080/deleteTask"
  userTaskDetails="http://localhost:8080/searchByuser"

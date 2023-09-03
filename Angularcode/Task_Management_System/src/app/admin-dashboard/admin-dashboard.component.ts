@@ -20,15 +20,17 @@ export class AdminDashboardComponent implements OnInit {
   name!:string;
   email!:string;
   password!:string;
+  userRole!:string;
   
   page:number=1
   count:number=0
   tableSize:number=5
   userForm=new FormGroup({
-    userID: new FormControl('',[ Validators.required]),
+    userRole: new FormControl('',[ Validators.required]),
     name: new FormControl('', Validators.required),
     email:new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required,Validators.minLength(6)])
+
   })
 
   constructor(private loginService: TmsServiceService ,private router:Router) { }
@@ -68,11 +70,12 @@ export class AdminDashboardComponent implements OnInit {
 
 
   addUser(): void {
-    this.newUser.userID=this.userID
+    
     this.newUser.name=this.name
     this.newUser.email=this.email
     this.newUser.password=this.password
-    
+    this.newUser.userRole=this.userRole
+    console.log(this.userRole);
     console.log(this.newUser);
     this.loginService.addUser(this.newUser).subscribe((user: User) => {
       this.users.push(user);

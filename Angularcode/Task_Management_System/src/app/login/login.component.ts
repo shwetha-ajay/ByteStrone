@@ -25,7 +25,10 @@ export class LoginComponent  {
 
 constructor( private loginservice: TmsServiceService,private router:Router) { 
 }
+ngOnInit(){
+  localStorage.clear();
 
+}
   // Function to handle login
 doLogin(){
 

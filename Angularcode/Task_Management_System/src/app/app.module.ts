@@ -14,6 +14,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ReportComponent } from './report/report.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
     HomeComponent,
     ReportComponent,
     AddTaskComponent,
+    SpinnerComponent,
   
   ],
   imports: [

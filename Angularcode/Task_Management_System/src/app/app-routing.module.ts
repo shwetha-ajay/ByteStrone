@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './Authguard/auth.guard';
 import { ReportComponent } from './report/report.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 const routes: Routes = [
   {path:"",redirectTo: "login",pathMatch:"full"},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:"home",component:HomeComponent},
   {path:"report",component:ReportComponent},
   {path:"addTask",component:AddTaskComponent},
+  { path: 'spinner', component: SpinnerComponent },
 
 ];
 

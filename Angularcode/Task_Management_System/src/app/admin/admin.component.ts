@@ -7,6 +7,7 @@ import { compileNgModule } from '@angular/compiler';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Taskscores } from '../class/taskscores';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -36,6 +37,17 @@ import { Taskscores } from '../class/taskscores';
     showTable=true
     searchedTasks:any
     userIds: number[] = []; 
+    
+    taskForm=new FormGroup({
+      title: new FormControl('',[ Validators.required]),
+      description: new FormControl('',[ Validators.required]),
+      status: new FormControl('',[ Validators.required]),
+      priority: new FormControl('',[ Validators.required, Validators.max(5)]),
+      duedate: new FormControl('',[ Validators.required]),
+    })
+    
+    
+
     
   constructor(private loginService: TmsServiceService,private router: Router) { }
   

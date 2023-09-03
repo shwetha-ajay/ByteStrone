@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
   userID!:any
   tasks!:any
   admin=false
+  spinnerService: any;
 
 
 constructor(private service:TmsServiceService,private router:Router){}
@@ -40,6 +41,13 @@ ngOnInit(): void {
 }
  
 logout(){
+  // this.spinnerService.show(); // Show the spinner
+  // setTimeout(() => {
+  //   this.spinnerService.hide(); // Hide the spinner
+  //   localStorage.clear();
+  //  this.router.navigate(["/login"]) // Redirect to the home page
+  // }, 2000); // Replace with your actual logout logic
+
    localStorage.clear();
    this.router.navigate(["/login"])
 }
