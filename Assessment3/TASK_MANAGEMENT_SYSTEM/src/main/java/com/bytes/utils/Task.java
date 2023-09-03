@@ -2,15 +2,20 @@ package com.bytes.utils;
 
 import java.time.LocalDate;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Task")
 public class Task {
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_sequence")
+   @SequenceGenerator(name = "task_sequence", sequenceName = "task_seq", allocationSize = 1, initialValue = 7001)
 	private int taskID;
 	private String title;
 	private String description;
