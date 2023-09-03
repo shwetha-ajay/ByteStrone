@@ -16,5 +16,18 @@ public class UserRoleImpl implements UserRoleService {
 		userRoleRepository.save(role);
 
 	}
+	
+	
+	    public UserRole getRoleById(int roleID) {
+	        return userRoleRepository.findById(roleID).orElse(null);
+	    }
+
+
+		@Override
+		public UserRole getRoleById(UserRole roleID) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 
 }

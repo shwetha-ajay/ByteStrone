@@ -8,12 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import com.bytes.utils.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-//	 User findByEmailAndPasswordAndRoleid(String email, String password, int roleId);
+//    User findByEmailAndPasswordAndRoleID(String email, String password, int roleID);
 	    
 	User findByEmail(String email);
 	
 	@Query("SELECT u.userID FROM User u")
     List<Integer> findAllUserIds();
+
+	User findByEmailAndPassword(String email, String password);
 
 	
 }

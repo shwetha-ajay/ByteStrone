@@ -18,7 +18,7 @@ public class UserRole {
 	
 	public UserRole(int roleID, String name) {
 		super();
-		this.roleID = roleID;
+		this.roleID = roleID; 
 		this.name = name;
 	}
 

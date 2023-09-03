@@ -18,5 +18,8 @@ public interface UserService {
 
 	public List<Integer> getUserIds();
 
+//	public ResponseEntity<Login> loginDetails(User login);
+
+	public User login(String email, String password);
 
 }

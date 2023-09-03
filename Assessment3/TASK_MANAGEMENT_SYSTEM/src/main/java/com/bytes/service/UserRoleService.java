@@ -6,4 +6,6 @@ public interface UserRoleService {
 
 	public void addUserRole(UserRole role);
 
+	public UserRole getRoleById(UserRole roleID);
+
 }

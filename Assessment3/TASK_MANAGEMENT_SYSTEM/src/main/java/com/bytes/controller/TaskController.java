@@ -29,7 +29,7 @@ public class TaskController {
 	public ResponseEntity<Integer> addtaskDetails(@RequestBody Task task) {
 		taskService.addtaskDetails(task);
 		return ResponseEntity.ok(200);
-	}	
+	}	 
 	
 //  view tasks
 	@GetMapping("/viewTask")

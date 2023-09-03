@@ -7,16 +7,21 @@ import org.springframework.stereotype.Service;
 
 import com.bytes.repo.TaskRepository;
 import com.bytes.repo.UserRepository;
-import com.bytes.utils.Task;
 import com.bytes.utils.User;
 
 @Service
-//@Transactional
+
 public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 	@Autowired
 	TaskRepository taskRepository;
+
+	
+	@Override
+	public User login(String email, String password) {
+		return userRepository.findByEmailAndPassword(email, password);
+	}
 
 	@Override
 	public void addUser(User user) {
@@ -28,7 +33,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addAdmin(User admin) {
 		userRepository.save(admin);
-
 	}
 
 //  fetch all users
@@ -42,8 +46,8 @@ public class UserServiceImpl implements UserService {
 	public void deleteAdmin(int userId) {
 		taskRepository.deleteTasksByUserId(userId);
 		userRepository.deleteById(userId);
-		
-	}	
+
+	}
 
 //  fetch userid by email    
 	public int getUserIdByEmail(String email) {
@@ -59,5 +63,7 @@ public class UserServiceImpl implements UserService {
 	public List<Integer> getUserIds() {
 		return userRepository.findAllUserIds();
 	}
+
+
 
 }

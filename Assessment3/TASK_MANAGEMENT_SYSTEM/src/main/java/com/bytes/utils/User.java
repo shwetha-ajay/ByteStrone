@@ -31,13 +31,14 @@ public class User {
 	public User() {
 
 	}
-
-	public User(int userID, String name, String email, UserRole roleID) {
+ 
+	public User(int userID, String name, String email,String password, UserRole roleID) {
 		super();
 		this.userID = userID;
 		this.name = name;	
 		this.email = email;
 		this.roleID = roleID;
+		this.password=password;
 	}
 
 	public String getPassword() {
