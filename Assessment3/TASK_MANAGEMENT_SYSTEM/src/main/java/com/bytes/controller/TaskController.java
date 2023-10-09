@@ -27,6 +27,7 @@ public class TaskController {
 //	create task	
 	@PostMapping("/task")
 	public ResponseEntity<Integer> addtaskDetails(@RequestBody Task task) {
+		System.out.println(task);
 		taskService.addtaskDetails(task);
 		return ResponseEntity.ok(200);
 	}	 

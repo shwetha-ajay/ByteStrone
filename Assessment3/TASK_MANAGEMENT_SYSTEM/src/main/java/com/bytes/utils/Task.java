@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = "Task")
 public class Task {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "task_sequence")
    @SequenceGenerator(name = "task_sequence", sequenceName = "task_seq", allocationSize = 1, initialValue = 7001)
 	private int taskID;
 	private String title;
@@ -119,5 +119,13 @@ public class Task {
     public void setScore(Double score) {
     	this.score=score;
     }
+
+	@Override
+	public String toString() {
+		return "Task [taskID=" + taskID + ", title=" + title + ", description=" + description + ", dueDate=" + dueDate
+				+ ", priority=" + priority + ", status=" + status + ", userID=" + userID + ", workID=" + workID
+				+ ", score=" + score + "]";
+	}
+    
 
 }

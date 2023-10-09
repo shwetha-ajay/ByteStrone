@@ -52,7 +52,7 @@ public class TaskServiceImplTests {
 		Mockito.when(taskRepository.findAll()).thenReturn(Arrays.asList(task, task));
 		assertEquals(2, taskService.getAllTasks().size());
 	}
-
+ 
 	@Test
 	void getTasksByUserId() {
 		int userId = 123;

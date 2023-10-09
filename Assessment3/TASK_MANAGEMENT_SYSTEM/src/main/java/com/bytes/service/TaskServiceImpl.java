@@ -25,6 +25,9 @@ public class TaskServiceImpl implements TaskService {
 //  add task
 	@Override
 	public void addtaskDetails(Task tasks) {
+		tasks.setTaskID(20);
+		System.out.println(tasks);
+
 		taskRepository.save(tasks);
 	}
 
