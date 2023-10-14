@@ -42,14 +42,13 @@
     <div class="valid" *ngIf="taskForm.controls.priority.invalid && taskForm.controls.priority.touched">
       Invalid </div>
   
-    <select class="userId"name="assignedto" [(ngModel)]="userID"  required  >
+    <select class="userId"name="assignedto" [(ngModel)]="userID" required >
       <option value=""disabled  selected >Select Assigned To</option>
       <option *ngFor="let id of userIds" [value]="id">{{ id }}</option>
     </select>
-
     
-
-    <button type="submit" class="add" >Add Task</button></div>
+    
+    <button type="submit" class="add"  (click)="addTask()">Add Task</button></div>
   </form>
   </div>
   </div>
@@ -81,7 +80,7 @@
       <td>{{ task.description }}</td>
       <td>{{ task.dueDate }}</td>
       <td>    
-        <select  [(ngModel)]="task.status">
+        <select  [(ngModel)]="task.status" >
         <option value="In progress" >In Progress</option>
         <option value="Completed">Completed</option>
         <option value="Deferred">Deferred</option>

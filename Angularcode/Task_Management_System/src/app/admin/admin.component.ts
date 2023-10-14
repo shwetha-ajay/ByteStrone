@@ -106,8 +106,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
       this.newTask.priority=this.priority
       this.newTask.description=this.description
       this.newTask.dueDate=this.dueDate
+      console.log(this.priority);
       // this.newTask.userID = { userID: this.userID }
-      this.newTask.userID = { userID: parseInt(this.userID ) };
+      this.newTask.userID = { userID: parseInt(this.userID) };
       console.log(this.newTask);
       this.loginService.addTask(this.newTask).subscribe((task: Task) => {
         this.tasks.push(task);
